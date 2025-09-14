@@ -12,4 +12,9 @@ public class ControladorLoja {
         model.addAttribute("mensagem", "Bem-vindo à Loja de Brinquedos!");
         return "loja"; // nome do arquivo HTML sem o .html
     }
+
+    @GetMapping("/sobre.html")
+    public String sobre() {
+        return "sobre"; // nome do arquivo HTML sem o .html
+    }
 }

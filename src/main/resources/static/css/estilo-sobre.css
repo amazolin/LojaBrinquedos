@@ -1,0 +1,129 @@
+
+
+/* Card colorido e infantil */
+.card-membro {
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(255,111,97,0.10), 0 1.5px 4px rgba(255,159,128,0.12);
+    border-radius: 16px;
+    padding: 25px 10px 10px 10px;
+    margin: 0 0 10px 0;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2.5px solid #ff9f80;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-membro:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 3px 8px rgba(0,0,0,0.12);
+    transform: translateY(-4px) scale(1.04);
+    border-width: 4px;
+}
+
+.card-membro h3 {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #ff6f61;
+    text-shadow: 1px 1px 0 #fff6e0;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.card-membro p {
+    margin: 0;
+    color: #ff9f80;
+    font-size: 1em;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.card-membro h3 {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 1.15em;
+    font-weight: bold;
+}
+
+.card-membro p {
+    margin: 0;
+    color: #444;
+    font-size: 1em;
+}
+
+/* estilo-sobre.css */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.membros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Cards dos membros: três por linha, tamanho menor e responsivo */
+.membros {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 30px;
+        padding-top: 40px;
+}
+.membros > div {
+        flex: 0 1 30%;
+        max-width: 180px;
+        min-width: 120px;
+        min-height: 220px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+    .membros > div {
+        flex: 0 1 45%;
+        max-width: 45vw;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 600px) {
+    .membros {
+        gap: 8px;
+    }
+    .membros > div {
+        flex: 1 1 100%;
+        max-width: 98vw;
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 700px) {
+    .membros {
+        gap: 10px;
+    }
+    .membros > div {
+        flex: 1 1 100%;
+        max-width: 98vw;
+        min-width: 180px;
+    }
+}
+
+.imagem-produto {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 8px;
+}
+
