@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/starsglow1.gif');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: top left;
+    background-size: auto;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Logo no topo, centralizado */
+.topo-logo {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.topo-logo img {
+    width: 350px; /* tamanho maior do logo */
+    height: 350px;
+    object-fit: cover; /* mantém a proporção e corta excesso */
+    border-radius: 10px; /* cantos arredondados, opcional */
+}
+
+/* 🔥 Fogo logo abaixo do logo */
+.fogo-abaixo-logo {
+    width: 100%;
+    text-align: center;
+    margin-top: -30px; /* opcional: para encostar mais no logo */
+    margin-bottom: 20px;
+}
+
+.fogo-abaixo-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Header com o menu */
+header {
+    background-color: #ff9f80;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Produtos */
+.container {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.produto {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+}
+
+.produto img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.produto h3 {
+    font-size: 1.1em;
+    margin: 10px 0 5px 0;
+}
+
+.produto p {
+    color: #333;
+    font-size: 0.9em;
+}
+
+/* Rodapé */
+footer {
+    background-color: #ff6f61;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.gif-canto-direito {
+    position: fixed;  /* fixa na tela */
+    bottom: 10px;     /* 10px da base da tela */
+    right: 110px;      /* 10px da direita da tela */
+    width: 100px;     /* largura do gif, ajuste conforme quiser */
+    height: auto;     /* altura proporcional */
+    z-index: 1000;    /* fica acima dos outros elementos */
+}
+
+.gif-canto-superior-esquerdo {
+    position: fixed;   /* fixa na tela */
+    top: 10px;         /* 10px do topo da tela */
+    left: 10px;        /* 10px da esquerda da tela */
+    width: 100px;      /* ajuste conforme necessário */
+    height: auto;      /* proporcional */
+    z-index: 1000;     /* sobrepõe outros elementos */
+}
+
+.gif-canto-superior-gameboy {
+    position: fixed;   /* fixa na tela */
+    top: 100px;         /* 10px do topo da tela */
+    left: 100px;        /* 10px da esquerda da tela */
+    width: 100px;      /* ajuste conforme necessário */
+    height: auto;      /* proporcional */
+    z-index: 1000;     /* sobrepõe outros elementos */
+}
+
+.gif-canto-superior-tamagoshi {
+    position: fixed;   /* fixa na tela */
+    top: 200px;         /* 10px do topo da tela */
+    left: 900px;        /* 10px da esquerda da tela */
+    width: 100px;      /* ajuste conforme necessário */
+    height: auto;      /* proporcional */
+    z-index: 1000;     /* sobrepõe outros elementos */
+}
+
+.gif-superior-foguinho {
+    position: fixed;   /* fixa na tela */
+    top: 300px;         /* 10px do topo da tela */
+    left: 700px;        /* 10px da esquerda da tela */
+    width: 100px;      /* ajuste conforme necessário */
+    height: auto;      /* proporcional */
+    z-index: 1000;     /* sobrepõe outros elementos */
+}
+
+.gif-inferior-umcara {
+   position: fixed;  /* fixa na tela */
+    bottom: 10px;     /* 10px da base da tela */
+    right: 910px;      /* 10px da direita da tela */
+    width: 200px;     /* largura do gif, ajuste conforme quiser */
+    height: auto;     /* altura proporcional */
+    z-index: 1000;    /* fica acima dos outros elementos */
+}
+
+.gif-topo-parishilton {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 150px; /* ajuste conforme necessário */
+    height: auto;
+    transform: rotate(180deg); /* gira de cabeça para baixo */
+    z-index: 1000;
+    pointer-events: none; /* evita clique se for apenas decorativo */
+}
+
