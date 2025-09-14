@@ -1,0 +1,87 @@
+.carrossel-labubu {
+	position: relative;
+	width: 200px;
+	height: 220px; /* Altura fixa */
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.imagens-principais {
+	height: 100%;
+	position: relative;
+}
+
+.imagens-principais img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	display: none;
+	border-radius: 5px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.imagens-principais img.imagem-ativa {
+	display: block;
+	position: relative;
+}
+
+/* Botões laterais */
+.btn-prev,
+.btn-next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: rgba(255, 111, 97, 0.9); /* Cor vermelha */
+	color: white;
+	border: none;
+	padding: 8px 12px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 18px;
+	z-index: 2;
+	user-select: none;
+	transition: background-color 0.3s ease;
+}
+
+.btn-prev:hover,
+.btn-next:hover {
+	background-color: rgba(255, 90, 70, 1);
+}
+
+.btn-prev {
+	left: -10px; /* Para aparecer do lado de fora da imagem */
+}
+
+.btn-next {
+	right: -10px;
+}
+
+/* Miniaturas */
+.miniaturas {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	gap: 10px;
+}
+
+.miniaturas img {
+	width: 50px;
+	cursor: pointer;
+	opacity: 0.6;
+	border-radius: 3px;
+	border: 2px solid transparent;
+	transition: opacity 0.3s, border-color 0.3s;
+}
+
+.miniaturas img.miniatura-ativa {
+	opacity: 1;
+	border-color: #ff6f61;
+}
+
+.imagens-principais img.imagem-ativa:hover {
+	transform: scale(1.05);
+	transition: transform 0.3s ease;
+	z-index: 1;
+}
