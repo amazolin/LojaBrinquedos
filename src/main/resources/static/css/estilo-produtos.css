@@ -1,0 +1,27 @@
+/* Centraliza o título da página de produtos */
+.titulo-pagina {
+    text-align: center;
+    width: 100%;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #ff6f61;
+}
+
+/* Filtro alinhado à direita */
+.filtro-categorias {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.filtro-categorias label {
+    font-weight: bold;
+    color: #ff6f61;
+}
+
+.filtro-categorias select {
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #ff9f80;
+}

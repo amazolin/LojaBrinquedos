@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Administração - Loja de Brinquedos</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/estilo-admin.css">
+</head>
+
+<body>
+    <header>
+        <h1>Administração</h1>
+    </header>   
+
+    <nav>
+        <a href="#">Início</a> <a href="/produtos">Produtos</a> <a href="#">Contato</a>
+		<a href="/sobre">Sobre</a>
+    </nav>
+
+<!-- ENunca usei table e thead na minha vida, então qualquer duvida, n sei explicar. Fiz com o gemini pro -->
+     <div class="container">
+        <h2>Brinquedos Cadastrados</h2>
+        <table class="tabela-admin">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                    <th>Controles</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Descrição do Brinquedo</td>
+                    <td>Categoria 2</td>
+                    <td>R$ 50,00</td>
+                    <td><a href="#" class="btn-editar">Editar</a> - <a href="#" class="btn-excluir">Excluir</a></td>
+                </tr>
+                <tr>
+                    <td>Descrição do Brinquedo</td>
+                    <td>Categoria 1</td>
+                    <td>R$ 150,00</td>
+                    <td><a href="#" class="btn-editar">Editar</a> - <a href="#" class="btn-excluir">Excluir</a></td>
+                </tr>
+                <tr>
+                    <td>Descrição do Brinquedo</td>
+                    <td>Categoria 3</td>
+                    <td>R$ 75,50</td>
+                    <td><a href="#" class="btn-editar">Editar</a> - <a href="#" class="btn-excluir">Excluir</a></td>
+                </tr>
+                <tr>
+                    <td>Descrição do Brinquedo</td>
+                    <td>Categoria 2</td>
+                    <td>R$ 13,99</td>
+                    <td><a href="#" class="btn-editar">Editar</a> - <a href="#" class="btn-excluir">Excluir</a></td>
+                </tr>
+                <tr>
+                    <td>Descrição do Brinquedo</td>
+                    <td>Categoria 2</td>
+                    <td>R$ 99,99</td>
+                    <td><a href="#" class="btn-editar">Editar</a> - <a href="#" class="btn-excluir">Excluir</a></td>
+                </tr>
+                 <tr>
+                    <td>Descrição do Brinquedo</td>
+                    <td>Categoria 1</td>
+                    <td>R$ 45,00</td>
+                    <td><a href="#" class="btn-editar">Editar</a> - <a href="#" class="btn-excluir">Excluir</a></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <button id="btnAbrirModal" class="botao-adicionar">Adicionar Novo Brinquedo</button>
+    </div>
+
+    <div id="modalAdicionar" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar-modal">&times;</span>
+            <h2>Adicionar novo brinquedo</h2>
+            <form class="form-admin">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+                
+                <label for="preco">Preço:</label>
+                <input type="text" id="preco" name="preco" required>
+                
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" required></textarea>
+                
+                <label for="categoria">Categoria:</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="labubu">Labubu</option>
+                    <option value="carrinho">Carrinho</option>
+                    <option value="lego">Lego</option>
+                </select>
+                
+                <label for="imagem">Imagem:</label>
+                <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                
+                <button type="submit">Adicionar Brinquedo</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/modal.js"></script>
+
+</body>
+</html>

@@ -4,6 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
+
+
+
 @Controller
 public class ControladorLoja {
 
@@ -13,8 +17,20 @@ public class ControladorLoja {
         return "loja"; // nome do arquivo HTML sem o .html
     }
 
-    @GetMapping("/sobre.html")
+    @GetMapping("/sobre")
     public String sobre() {
         return "sobre"; // nome do arquivo HTML sem o .html
     }
+
+    @GetMapping("/produtos")
+    public String produtos() {
+        return "produtos"; // nome do arquivo HTML sem o .html
+    }
+
+    @GetMapping("/administracao")
+    public String administracao() {
+        return "administracao"; // nome do arquivo HTML sem o .html
+    }
+    
+
 }

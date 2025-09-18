@@ -1,4 +1,13 @@
+/* Centraliza o título dos mais vendidos */
 @charset "UTF-8";
+
+.titulo-mais-vendidos {
+    text-align: center;
+    width: 100%;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #ff6f61;
+}
 
 body {
     font-family: Arial, sans-serif;
