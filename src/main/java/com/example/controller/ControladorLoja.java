@@ -31,6 +31,11 @@ public class ControladorLoja {
     public String administracao() {
         return "administracao"; // nome do arquivo HTML sem o .html
     }
+
+    @GetMapping("/contato")
+    public String contato() {
+        return "contato"; // nome do arquivo HTML sem o .html
+    }
     
 
 }
