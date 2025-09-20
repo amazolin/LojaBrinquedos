@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - Loja de Brinquedos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/carrossel.css">
+    <link rel="stylesheet" href="/css/estilo-produtos.css">
+    <link rel="stylesheet" href="/css/cadastro.css">
+</head>
+
+<body>
+    <header>
+        <h1>Cadastro ou Login</h1>
+    </header>
+
+    <nav>
+        <a href="/loja">Início</a>
+        <a href="/produtos">Produtos</a>
+        <a href="/contato">Contato</a>
+        <a href="/sobre">Sobre</a>
+    </nav>
+
+    <div class="container">
+        <h2 class="titulo-pagina">Escolha a opção desejada</h2>
+
+        <!-- Abas de Navegação -->
+        <div class="tabs">
+            <button class="tab active" id="tab-cadastro">Cadastro</button>
+            <button class="tab" id="tab-login">Login</button>
+        </div>
+
+        <!-- Formulário de Cadastro -->
+        <div id="cadastro-form" class="form-container active">
+            <h2>Crie sua conta</h2>
+            <form method="POST" action="/cadastro" class="form-cadastro" th:object="${usuario}">
+                <div class="form-group">
+                    <label for="nome">Nome completo:</label>
+                    <input type="text" id="nome" name="nome" th:field="*{nome}" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" th:field="*{email}" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" th:field="*{senha}" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirma-senha">Confirmar senha:</label>
+                    <input type="password" id="confirma-senha" name="confirmaSenha" required>
+                </div>
+                <button type="submit">Cadastrar</button>
+            </form>
+
+            <!-- Exibe mensagem de erro -->
+            <p th:if="${erro}" th:text="${erro}" style="color: red;"></p>
+            <p th:if="${mensagem}" th:text="${mensagem}" style="color: green;"></p>
+        </div>
+
+        <!-- Formulário de Login -->
+        <div id="login-form" class="form-container">
+            <h2>Já tem uma conta? Faça login</h2>
+            <form method="POST" action="/login" class="form-login">
+                <div class="form-group">
+                    <label for="email-login">E-mail:</label>
+                    <input type="email" id="email-login" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha-login">Senha:</label>
+                    <input type="password" id="senha-login" name="senha" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+
+            <p th:if="${erro}" th:text="${erro}" style="color: red;"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="/js/cadastro.js"></script>
+</body>
+</html>
