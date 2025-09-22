@@ -5,23 +5,22 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "clientes3")
 public class Usuario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cliente")
+	private Long id;
 
-    @NotBlank
-    private String nome;
+	@Column(name = "nome_completo")
+	private String nome;
 
-    @NotBlank
-    @Email
-    @Column(unique = true)
-    private String email;
+	@Column(unique = true)
+	private String email;
 
-    @NotBlank
-    private String senha;
+	@NotBlank
+	private String senha;
 
     public Usuario() {}
 
