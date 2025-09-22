@@ -62,7 +62,7 @@ public class ControladorLoja {
         try {
             usuarioService.cadastrar(usuario);
             model.addAttribute("mensagem", "Cadastro realizado com sucesso!");
-            return "login"; // redireciona para login após cadastrar
+            return "loja"; // redireciona para login após cadastrar
         } catch (IllegalArgumentException e) {
             model.addAttribute("erro", e.getMessage());
             return "cadastro";

@@ -8,19 +8,22 @@ import jakarta.validation.constraints.NotBlank;
 @Table(name = "clientes3")
 public class Usuario {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_cliente")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cliente")
+    private Long id;
 
-	@Column(name = "nome_completo")
-	private String nome;
+    @NotBlank(message = "O nome não pode ficar em branco")
+    @Column(name = "nome_completo")
+    private String nome;
 
-	@Column(unique = true)
-	private String email;
+    @NotBlank(message = "O email não pode ficar em branco")
+    @Email(message = "O email deve ser válido")
+    @Column(unique = true)
+    private String email;
 
-	@NotBlank
-	private String senha;
+    @NotBlank(message = "A senha não pode ficar em branco")
+    private String senha;
 
     public Usuario() {}
 
