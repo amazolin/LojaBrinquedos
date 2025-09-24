@@ -1,20 +1,28 @@
 package com.example.controller;
 
-import com.example.model.Usuario;
-import com.example.service.UsuarioService;
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.model.Usuario;
+import com.example.service.BrinquedoService;
+import com.example.service.UsuarioService;
+
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 public class ControladorLoja {
 
     private final UsuarioService usuarioService;
+    private final BrinquedoService brinquedoService;
 
-    public ControladorLoja(UsuarioService usuarioService) {
+    public ControladorLoja(UsuarioService usuarioService, BrinquedoService brinquedoService) {
         this.usuarioService = usuarioService;
+        this.brinquedoService = brinquedoService;
     }
 
     // Página inicial da loja
@@ -35,8 +43,19 @@ public class ControladorLoja {
     }
 
     @GetMapping("/produtos")
-    public String produtos() {
+    public String produtos(Model model) {
+        model.addAttribute("produtos", brinquedoService.listarTodos());
         return "produtos";
+    }
+
+    @GetMapping("/brinquedo")
+    public String detalheBrinquedo(@RequestParam("id") Long id, Model model) {
+        return brinquedoService.buscarPorId(id)
+                .map(brinquedo -> {
+                    model.addAttribute("brinquedo", brinquedo);
+                    return "brinquedo-detalhe"; // Nome do novo arquivo HTML
+                })
+                .orElse("redirect:/produtos"); // Se não achar, volta para a lista
     }
 
     @GetMapping("/administracao")

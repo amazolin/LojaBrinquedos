@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${brinquedo.nome}"></title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/estilo-detalhe.css"> </head>
+<body>
+
+    <header>
+        <h1 th:text="${brinquedo.nome}">Nome do Brinquedo</h1>
+    </header>
+
+    <nav>
+        <a href="/loja">Início</a>
+        <a href="/produtos">Produtos</a>
+        <a href="/contato">Contato</a>
+        <a href="/sobre">Sobre</a>
+    </nav>
+
+    <div class="container">
+        <div th:if="${brinquedo}" class="detalhe-container">
+            
+            <div class="detalhe-imagem">
+                <img th:src="${brinquedo.imagemBrinquedo != null ? brinquedo.imagemBrinquedo : '/images/placeholder.png'}" 
+                     th:alt="${brinquedo.nome}">
+            </div>
+
+            <div class="detalhe-info">
+                <h2 th:text="${brinquedo.nome}">Nome do Brinquedo</h2>
+                <p class="preco" th:text="'R$ ' + ${#numbers.formatDecimal(brinquedo.preco, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</p>
+                
+                <h3>Descrição</h3>
+                <p class="descricao" th:text="${brinquedo.descricao}">Descrição completa do brinquedo.</p>
+
+                <h3>Detalhes Técnicos</h3>
+                <p class="detalhes-tecnicos" th:text="${brinquedo.detalhes}">Detalhes técnicos do brinquedo.</p>
+                <p><strong>Marca:</strong> <span th:text="${brinquedo.marca}">Marca do Brinquedo</span></p>
+            </div>
+
+        </div>
+        <div th:if="${brinquedo == null}">
+            <p>Brinquedo não encontrado.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
+    </footer>
+
+</body>
+</html>

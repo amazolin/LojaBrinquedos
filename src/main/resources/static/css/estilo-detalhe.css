@@ -1,0 +1,59 @@
+/* Container principal da página de detalhes */
+.detalhe-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar em telas menores */
+    gap: 30px; /* Espaço entre a imagem e as informações */
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+/* Área da imagem */
+.detalhe-imagem {
+    flex: 1 1 300px; /* Base de 300px, pode crescer e diminuir */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detalhe-imagem img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Área das informações */
+.detalhe-info {
+    flex: 2 1 400px; /* Ocupa mais espaço que a imagem */
+    display: flex;
+    flex-direction: column;
+}
+
+.detalhe-info h2 {
+    font-size: 2.2em;
+    color: #ff6f61;
+    margin-bottom: 15px;
+}
+
+.detalhe-info .preco {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.detalhe-info .descricao {
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.detalhe-info .detalhes-tecnicos {
+    font-size: 0.9em;
+    color: #666;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
