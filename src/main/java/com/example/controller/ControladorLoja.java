@@ -25,11 +25,14 @@ public class ControladorLoja {
         this.brinquedoService = brinquedoService;
     }
 
-    // Método auxiliar para adicionar nomeUsuario em todas as páginas
+    // Método auxiliar para adicionar nomeUsuario e isAdmin em todas as páginas
     private void adicionarUsuarioLogado(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
         if (usuario != null) {
             model.addAttribute("nomeUsuario", usuario.getNome());
+
+            Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+            model.addAttribute("isAdmin", isAdmin != null && isAdmin);
         }
     }
 
@@ -110,6 +113,15 @@ public class ControladorLoja {
         try {
             usuarioService.cadastrar(usuario);
             session.setAttribute("usuarioLogado", usuario);
+
+            // aplica mesma regra do login
+            if (usuario.getEmail().toLowerCase().endsWith("@pocotoys.com.br") ||
+                usuario.getEmail().toLowerCase().endsWith("@apocotoys.com.br")) {
+                session.setAttribute("isAdmin", true);
+            } else {
+                session.setAttribute("isAdmin", false);
+            }
+
             return "redirect:/loja";
         } catch (IllegalArgumentException e) {
             model.addAttribute("erro", e.getMessage());
@@ -131,6 +143,15 @@ public class ControladorLoja {
         return usuarioService.autenticar(email, senha)
                 .map(usuario -> {
                     session.setAttribute("usuarioLogado", usuario);
+
+                    // Define se é admin pelo domínio do e-mail
+                    if (email.toLowerCase().endsWith("@pocotoys.com.br") ||
+                        email.toLowerCase().endsWith("@apocotoys.com.br")) {
+                        session.setAttribute("isAdmin", true);
+                    } else {
+                        session.setAttribute("isAdmin", false);
+                    }
+
                     return "redirect:/loja";
                 })
                 .orElseGet(() -> {
