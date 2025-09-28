@@ -11,16 +11,24 @@
 
 	<header>
 		<h1 th:text="${mensagem}">Bem-vindo à PocoToys!</h1>
+
 		<div class="login-btn">
-			<a href="/cadastro"> <img src="/images/usuario.png"
-				alt="Ícone de usuário" class="icon-miniatura"> <span>Boas
-					vindas :)</span>
+			<!-- Se o usuário NÃO estiver logado -->
+			<a th:if="${nomeUsuario == null}" href="/cadastro"> <img
+				src="/images/usuario.png" alt="Ícone de usuário"
+				class="icon-miniatura"> <span>Boas vindas :)</span>
 				<button>Entre ou Cadastre-se</button>
 			</a>
+
+			<!-- Se o usuário estiver logado -->
+			<div th:if="${nomeUsuario != null}">
+				<img src="/images/usuario.png" alt="Ícone de usuário"
+					class="icon-miniatura"> <span
+					th:text="'Olá, ' + ${nomeUsuario}"></span> <a href="/logout" class="btn-logout">Sair</a>
+			</div>
 		</div>
-
-
 	</header>
+
 
 
 	<nav>

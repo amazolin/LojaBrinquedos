@@ -28,12 +28,30 @@ public class ControladorLoja {
     // Página inicial da loja
     @GetMapping("/loja")
     public String mostrarMensagem(Model model, HttpSession session) {
+        // Usuário logado
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
         if (usuario != null) {
             model.addAttribute("nomeUsuario", usuario.getNome());
         }
+
+        // Mensagem de boas-vindas
         model.addAttribute("mensagem", "Bem-vindo a Pocotoys!");
+
+        // Mensagem de erro de login, se houver
+        String erroLogin = (String) session.getAttribute("erroLogin");
+        if (erroLogin != null) {
+            model.addAttribute("erroLogin", erroLogin);
+            session.removeAttribute("erroLogin"); // limpa após exibir
+        }
+
         return "loja";
+    }
+
+    // Logout
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/loja";
     }
 
     // Outras páginas fixas
@@ -53,9 +71,9 @@ public class ControladorLoja {
         return brinquedoService.buscarPorId(id)
                 .map(brinquedo -> {
                     model.addAttribute("brinquedo", brinquedo);
-                    return "brinquedo-detalhe"; // Nome do novo arquivo HTML
+                    return "brinquedo-detalhe";
                 })
-                .orElse("redirect:/produtos"); // Se não achar, volta para a lista
+                .orElse("redirect:/produtos");
     }
 
     @GetMapping("/administracao")
@@ -81,17 +99,17 @@ public class ControladorLoja {
         try {
             usuarioService.cadastrar(usuario);
             model.addAttribute("mensagem", "Cadastro realizado com sucesso!");
-            return "loja"; // redireciona para login após cadastrar
+            return "loja";
         } catch (IllegalArgumentException e) {
             model.addAttribute("erro", e.getMessage());
             return "cadastro";
         }
     }
 
-    // Formulário de login
+    // GET login agora redireciona para /loja
     @GetMapping("/login")
     public String loginForm() {
-        return "login";
+        return "redirect:/loja";
     }
 
     // Processar login
@@ -102,19 +120,14 @@ public class ControladorLoja {
                         Model model) {
         return usuarioService.autenticar(email, senha)
                 .map(usuario -> {
+                    // login bem-sucedido
                     session.setAttribute("usuarioLogado", usuario);
                     return "redirect:/loja";
                 })
                 .orElseGet(() -> {
-                    model.addAttribute("erro", "Credenciais inválidas");
-                    return "login";
+                    // login inválido
+                    session.setAttribute("erroLogin", "Credenciais inválidas");
+                    return "redirect:/loja";
                 });
-    }
-
-    // Logout
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/loja";
     }
 }
