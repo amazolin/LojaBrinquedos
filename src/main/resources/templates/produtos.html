@@ -2,48 +2,67 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Produtos - Loja de Brinquedos</title>
-    <link rel="stylesheet" href="/css/estilo.css">
-    <link rel="stylesheet" href="/css/carrossel.css">
-    <link rel="stylesheet" href="/css/estilo-produtos.css">
+<meta charset="UTF-8">
+<title>Produtos - Loja de Brinquedos</title>
+<link rel="stylesheet" href="/css/estilo.css">
+<link rel="stylesheet" href="/css/carrossel.css">
+<link rel="stylesheet" href="/css/estilo-produtos.css">
 </head>
 
 <body>
-    <header>
-        <h1>Produtos</h1>
-    </header>
+	<header>
+		<h1>Produtos</h1>
 
-    <nav>
-        <a href="/loja">Início</a> <a href="/produtos">Produtos</a> <a href="/contato">Contato</a>
-		<a href="/sobre">Sobre</a>
-    </nav>
+		<div class="login-btn">
+			<!-- Se o usuário NÃO estiver logado -->
+			<a th:if="${nomeUsuario == null}" href="/cadastro"> <img
+				src="/images/usuario.png" alt="Ícone de usuário"
+				class="icon-miniatura"> <span>Boas vindas :)</span>
+				<button>Entre ou Cadastre-se</button>
+			</a>
 
-    <div class="container">
-        <h2 class="titulo-pagina">Todos os produtos</h2>
-        <form method="get" action="/produtos" class="filtro-categorias">
-            <label for="categoria">Filtrar por categoria:</label>
-            <select name="categoria" id="categoria" onchange="this.form.submit()">
-                <option value="">Todas</option>
-                <option value="labubu" th:selected="${categoria == 'labubu'}">Labubu</option>
-                <option value="carrinho" th:selected="${categoria == 'carrinho'}">Carrinho</option>
-                <option value="lego" th:selected="${categoria == 'lego'}">Lego</option>
-            </select>
-        </form>
-        <div class="produtos-lista">
-            <div class="produto" th:each="produto : ${produtos}">
-                <a th:href="@{'/brinquedo?id=' + ${produto.id}}">
-                    <img th:src="@{${produto.imagem}}" th:alt="${produto.nome}" class="imagem-produto">
-                    <h3 th:text="${produto.nome}">Nome do Produto</h3>
-                    <p class="preco" th:text="${produto.preco}">R$ 0,00</p>
-                </a>
-            </div>
-        </div>
-    </div>
+			<!-- Se o usuário estiver logado -->
+			<div th:if="${nomeUsuario != null}">
+				<img src="/images/usuario.png" alt="Ícone de usuário"
+					class="icon-miniatura"> <span
+					th:text="'Olá, ' + ${nomeUsuario}"></span> <a href="/logout"
+					class="btn-logout">Sair</a>
+			</div>
+		</div>
+	</header>
 
-    <footer>
-        <p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
-    </footer>
+
+	<nav>
+		<a href="/loja">Início</a> <a href="/produtos">Produtos</a> <a
+			href="/contato">Contato</a> <a href="/sobre">Sobre</a>
+	</nav>
+
+	<div class="container">
+		<h2 class="titulo-pagina">Todos os produtos</h2>
+		<form method="get" action="/produtos" class="filtro-categorias">
+			<label for="categoria">Filtrar por categoria:</label> <select
+				name="categoria" id="categoria" onchange="this.form.submit()">
+				<option value="">Todas</option>
+				<option value="labubu" th:selected="${categoria == 'labubu'}">Labubu</option>
+				<option value="carrinho" th:selected="${categoria == 'carrinho'}">Carrinho</option>
+				<option value="lego" th:selected="${categoria == 'lego'}">Lego</option>
+			</select>
+		</form>
+		<div class="produtos-lista">
+			<div class="produto" th:each="produto : ${produtos}">
+				<a th:href="@{'/brinquedo?id=' + ${produto.id}}"> <img
+					th:src="@{${produto.imagem}}" th:alt="${produto.nome}"
+					class="imagem-produto">
+					<h3 th:text="${produto.nome}">Nome do Produto</h3>
+					<p class="preco" th:text="${produto.preco}">R$ 0,00</p>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
+	</footer>
 </body>
 
 </html>

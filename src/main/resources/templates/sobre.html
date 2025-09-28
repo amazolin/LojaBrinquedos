@@ -2,61 +2,86 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Sobre a Equipe</title>
-    <link rel="stylesheet" href="/css/estilo.css">
-    <link rel="stylesheet" href="/css/estilo-sobre.css">
+<meta charset="UTF-8">
+<title>Sobre a Equipe</title>
+<link rel="stylesheet" href="/css/estilo.css">
+<link rel="stylesheet" href="/css/estilo-sobre.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>Conheça a Equipe!</h1>
-    </header>
+	<header>
+		<h1>Conheça a Equipe!</h1>
 
-    <nav>
-        <a href="/loja">Início</a> <a href="/produtos">Produtos</a> <a href="/contato">Contato</a>
-		<a href="/sobre">Sobre</a>
-    </nav>
+		<div class="login-btn">
+			<!-- Se o usuário NÃO estiver logado -->
+			<a th:if="${nomeUsuario == null}" href="/cadastro"> <img
+				src="/images/usuario.png" alt="Ícone de usuário"
+				class="icon-miniatura"> <span>Boas vindas :)</span>
+				<button>Entre ou Cadastre-se</button>
+			</a>
 
-    <div class="container">
-        <div class="membros">
-            <div class="card-membro">
-                <img th:src="@{/images/all-about-eve.jpg}" alt="Danilo Zamai" class="imagem-produto">
-                <h3>Danilo Zamai</h3>
-                <p>Desenvolvedor</p>
-            </div>
-            <div class="card-membro">
-                <img th:src="@{/images/all-about-eve.jpg}" alt="Murilo Fernandes" class="imagem-produto">
-                <h3>Murilo Fernandes</h3>
-                <p>Desenvolvedor</p>
-            </div>
-            <div class="card-membro">
-                <img th:src="@{/images/all-about-eve.jpg}" alt="Priscila Diniz" class="imagem-produto">
-                <h3>Priscila Diniz</h3>
-                <p>Administradora de Banco de Dados</p>
-            </div>
-        </div>
-        <div class="membros" style="justify-content: center;">
-            <div class="card-membro">
-                <img th:src="@{/images/all-about-eve.jpg}" alt="Raphael Godek" class="imagem-produto">
-                <h3>Raphael Godek</h3>
-                <p>Desenvolvedor</p>
-            </div>
-            <div class="card-membro">
-                <img th:src="@{/images/all-about-eve.jpg}" alt="Mateus Picoli" class="imagem-produto">
-                <h3>Mateus Picoli</h3>
-                <p></p>
-            </div>
-            <div class="card-membro">
-                <img th:src="@{/images/all-about-eve.jpg}" alt="Paulo Cesar" class="imagem-produto">
-                <h3>Paulo Cesar</h3>
-                <p></p>
-            </div>
-        </div>
-    </div>
+			<!-- Se o usuário estiver logado -->
+			<div th:if="${nomeUsuario != null}">
+				<img src="/images/usuario.png" alt="Ícone de usuário"
+					class="icon-miniatura"> <span
+					th:text="'Olá, ' + ${nomeUsuario}"></span> <a href="/logout"
+					class="btn-logout">Sair</a>
+			</div>
+		</div>
+	</header>
 
-    <footer> PocoToys &copy; 2025 Loja de Brinquedos. Todos os direitos reservados. </footer>
+
+	<nav>
+		<a href="/loja">Início</a> <a href="/produtos">Produtos</a> <a
+			href="/contato">Contato</a> <a href="/sobre">Sobre</a>
+	</nav>
+
+	<div class="container">
+		<div class="membros">
+			<div class="card-membro">
+				<img th:src="@{/images/all-about-eve.jpg}" alt="Danilo Zamai"
+					class="imagem-produto">
+				<h3>Danilo Zamai</h3>
+				<p>Desenvolvedor</p>
+			</div>
+			<div class="card-membro">
+				<img th:src="@{/images/all-about-eve.jpg}" alt="Murilo Fernandes"
+					class="imagem-produto">
+				<h3>Murilo Fernandes</h3>
+				<p>Desenvolvedor</p>
+			</div>
+			<div class="card-membro">
+				<img th:src="@{/images/all-about-eve.jpg}" alt="Priscila Diniz"
+					class="imagem-produto">
+				<h3>Priscila Diniz</h3>
+				<p>Administradora de Banco de Dados</p>
+			</div>
+		</div>
+		<div class="membros" style="justify-content: center;">
+			<div class="card-membro">
+				<img th:src="@{/images/all-about-eve.jpg}" alt="Raphael Godek"
+					class="imagem-produto">
+				<h3>Raphael Godek</h3>
+				<p>Desenvolvedor</p>
+			</div>
+			<div class="card-membro">
+				<img th:src="@{/images/all-about-eve.jpg}" alt="Mateus Picoli"
+					class="imagem-produto">
+				<h3>Mateus Picoli</h3>
+				<p></p>
+			</div>
+			<div class="card-membro">
+				<img th:src="@{/images/all-about-eve.jpg}" alt="Paulo Cesar"
+					class="imagem-produto">
+				<h3>Paulo Cesar</h3>
+				<p></p>
+			</div>
+		</div>
+	</div>
+
+	<footer> PocoToys &copy; 2025 Loja de Brinquedos. Todos os
+		direitos reservados. </footer>
 </body>
 
 </html>

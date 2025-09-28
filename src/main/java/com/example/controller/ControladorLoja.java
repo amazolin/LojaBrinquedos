@@ -25,23 +25,24 @@ public class ControladorLoja {
         this.brinquedoService = brinquedoService;
     }
 
-    // Página inicial da loja
-    @GetMapping("/loja")
-    public String mostrarMensagem(Model model, HttpSession session) {
-        // Usuário logado
+    // Método auxiliar para adicionar nomeUsuario em todas as páginas
+    private void adicionarUsuarioLogado(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
         if (usuario != null) {
             model.addAttribute("nomeUsuario", usuario.getNome());
         }
+    }
 
-        // Mensagem de boas-vindas
+    // Página inicial da loja
+    @GetMapping("/loja")
+    public String mostrarMensagem(Model model, HttpSession session) {
+        adicionarUsuarioLogado(model, session);
         model.addAttribute("mensagem", "Bem-vindo a Pocotoys!");
 
-        // Mensagem de erro de login, se houver
         String erroLogin = (String) session.getAttribute("erroLogin");
         if (erroLogin != null) {
             model.addAttribute("erroLogin", erroLogin);
-            session.removeAttribute("erroLogin"); // limpa após exibir
+            session.removeAttribute("erroLogin");
         }
 
         return "loja";
@@ -54,20 +55,25 @@ public class ControladorLoja {
         return "redirect:/loja";
     }
 
-    // Outras páginas fixas
+    // Página sobre
     @GetMapping("/sobre")
-    public String sobre() {
+    public String sobre(Model model, HttpSession session) {
+        adicionarUsuarioLogado(model, session);
         return "sobre";
     }
 
+    // Página de produtos
     @GetMapping("/produtos")
-    public String produtos(Model model) {
+    public String produtos(Model model, HttpSession session) {
+        adicionarUsuarioLogado(model, session);
         model.addAttribute("produtos", brinquedoService.listarTodos());
         return "produtos";
     }
 
+    // Detalhe do brinquedo
     @GetMapping("/brinquedo")
-    public String detalheBrinquedo(@RequestParam("id") Long id, Model model) {
+    public String detalheBrinquedo(@RequestParam("id") Long id, Model model, HttpSession session) {
+        adicionarUsuarioLogado(model, session);
         return brinquedoService.buscarPorId(id)
                 .map(brinquedo -> {
                     model.addAttribute("brinquedo", brinquedo);
@@ -76,37 +82,42 @@ public class ControladorLoja {
                 .orElse("redirect:/produtos");
     }
 
+    // Administração
     @GetMapping("/administracao")
-    public String administracao() {
+    public String administracao(Model model, HttpSession session) {
+        adicionarUsuarioLogado(model, session);
         return "administracao";
     }
 
+    // Contato
     @GetMapping("/contato")
-    public String contato() {
+    public String contato(Model model, HttpSession session) {
+        adicionarUsuarioLogado(model, session);
         return "contato";
     }
 
     // Formulário de cadastro
     @GetMapping("/cadastro")
-    public String cadastroForm(Model model) {
+    public String cadastroForm(Model model, HttpSession session) {
+        adicionarUsuarioLogado(model, session);
         model.addAttribute("usuario", new Usuario());
         return "cadastro";
     }
 
     // Processar cadastro
     @PostMapping("/cadastro")
-    public String cadastrar(@Valid @ModelAttribute Usuario usuario, Model model) {
+    public String cadastrar(@Valid @ModelAttribute Usuario usuario, Model model, HttpSession session) {
         try {
             usuarioService.cadastrar(usuario);
-            model.addAttribute("mensagem", "Cadastro realizado com sucesso!");
-            return "loja";
+            session.setAttribute("usuarioLogado", usuario);
+            return "redirect:/loja";
         } catch (IllegalArgumentException e) {
             model.addAttribute("erro", e.getMessage());
             return "cadastro";
         }
     }
 
-    // GET login agora redireciona para /loja
+    // GET login redireciona para /loja
     @GetMapping("/login")
     public String loginForm() {
         return "redirect:/loja";
@@ -116,16 +127,13 @@ public class ControladorLoja {
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String senha,
-                        HttpSession session,
-                        Model model) {
+                        HttpSession session) {
         return usuarioService.autenticar(email, senha)
                 .map(usuario -> {
-                    // login bem-sucedido
                     session.setAttribute("usuarioLogado", usuario);
                     return "redirect:/loja";
                 })
                 .orElseGet(() -> {
-                    // login inválido
                     session.setAttribute("erroLogin", "Credenciais inválidas");
                     return "redirect:/loja";
                 });

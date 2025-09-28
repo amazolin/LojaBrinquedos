@@ -2,125 +2,152 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato da loja</title>
-    <link rel="stylesheet" href="/css/estilo.css">
-    <link rel="stylesheet" href="/css/estilo-contato.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contato da loja</title>
+<link rel="stylesheet" href="/css/estilo.css">
+<link rel="stylesheet" href="/css/estilo-contato.css">
 </head>
 
 <body>
-    <header>
-        <h1>FAQ e Contato</h1>
-    </header>
+	<header>
+		<h1>FAQ e Contato</h1>
 
-    <nav>
-        <a href="/loja">Início</a> <a href="/produtos">Produtos</a> <a href="/contato">Contato</a>
-        <a href="/sobre">Sobre</a>
-    </nav>
+		<div class="login-btn">
+			<!-- Se o usuário NÃO estiver logado -->
+			<a th:if="${nomeUsuario == null}" href="/cadastro"> <img
+				src="/images/usuario.png" alt="Ícone de usuário"
+				class="icon-miniatura"> <span>Boas vindas :)</span>
+				<button>Entre ou Cadastre-se</button>
+			</a>
 
-    <div class="container">
-        <h1 id="segundo-titulo">Central de Ajuda e Contato</h1>
+			<!-- Se o usuário estiver logado -->
+			<div th:if="${nomeUsuario != null}">
+				<img src="/images/usuario.png" alt="Ícone de usuário"
+					class="icon-miniatura"> <span
+					th:text="'Olá, ' + ${nomeUsuario}"></span> <a href="/logout"
+					class="btn-logout">Sair</a>
+			</div>
+		</div>
+	</header>
 
-        <div class="content-wrapper">
-            <section class="area-faq"><!--inicio FAQs-->
-                <h2></i> Perguntas Frequentes (FAQs)</h2>
 
-                <table class="tabela-perguntas">
-                    <thead>
-                        <tr>
-                            <th>Categoria</th>
-                            <th>Pergunta</th>
-                            <th>Resposta</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></i> Criação de Conta</td>
-                            <td>Como criar uma conta?</td>
-                            <td>Para criar uma conta, clique em 'Registrar' no canto superior direito, preencha seus
-                                dados e clique em 'Criar Conta'.</td>
-                        </tr>
-                        <tr>
-                            <td>Garantia</td>
-                            <td>Os produtos têm garantia?</td>
-                            <td>Sim, todos os nossos produtos têm garantia de 12 meses contra defeitos de fabricação.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Pagamento</td>
-                            <td>Quais formas de pagamento são aceitas?</td>
-                            <td>Aceitamos cartão de crédito, débito, PIX e boleto bancário.</td>
-                        </tr>
-                        <tr>
-                            <td>Entrega</td>
-                            <td>Qual o prazo de entrega?</td>
-                            <td>O prazo de entrega varia de 3 a 15 dias úteis, dependendo da sua localização.</td>
-                        </tr>
-                        <tr>
-                            <td>Suporte</td>
-                            <td>Como entrar em contato com o suporte?</td>
-                            <td>Você pode entrar em contato pelo formulário ao lado, pelo telefone (11) 3456-7890 ou
-                                pelo email suporte@empresaxyz.com</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section> <!--fim da seção de FAQs-->
+	<nav>
+		<a href="/loja">Início</a> <a href="/produtos">Produtos</a> <a
+			href="/contato">Contato</a> <a href="/sobre">Sobre</a>
+	</nav>
 
-            <section class="area-contato"><!--Inicio formulário-->
-                <h2>Formulário de Contato</h2>
+	<div class="container">
+		<h1 id="segundo-titulo">Central de Ajuda e Contato</h1>
 
-                <form id="formulario-contato">
-                    <div class="grupo-formulario">
-                        <label for="name">Nome completo</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
+		<div class="content-wrapper">
+			<section class="area-faq">
+				<!--inicio FAQs-->
+				<h2>
+					</i> Perguntas Frequentes (FAQs)
+				</h2>
 
-                    <div class="grupo-formulario">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
+				<table class="tabela-perguntas">
+					<thead>
+						<tr>
+							<th>Categoria</th>
+							<th>Pergunta</th>
+							<th>Resposta</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td></i> Criação de Conta</td>
+							<td>Como criar uma conta?</td>
+							<td>Para criar uma conta, clique em 'Registrar' no canto
+								superior direito, preencha seus dados e clique em 'Criar Conta'.</td>
+						</tr>
+						<tr>
+							<td>Garantia</td>
+							<td>Os produtos têm garantia?</td>
+							<td>Sim, todos os nossos produtos têm garantia de 12 meses
+								contra defeitos de fabricação.</td>
+						</tr>
+						<tr>
+							<td>Pagamento</td>
+							<td>Quais formas de pagamento são aceitas?</td>
+							<td>Aceitamos cartão de crédito, débito, PIX e boleto
+								bancário.</td>
+						</tr>
+						<tr>
+							<td>Entrega</td>
+							<td>Qual o prazo de entrega?</td>
+							<td>O prazo de entrega varia de 3 a 15 dias úteis,
+								dependendo da sua localização.</td>
+						</tr>
+						<tr>
+							<td>Suporte</td>
+							<td>Como entrar em contato com o suporte?</td>
+							<td>Você pode entrar em contato pelo formulário ao lado,
+								pelo telefone (11) 3456-7890 ou pelo email
+								suporte@empresaxyz.com</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<!--fim da seção de FAQs-->
 
-                    <div class="grupo-formulario">
-                        <label for="phone">Telefone</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
+			<section class="area-contato">
+				<!--Inicio formulário-->
+				<h2>Formulário de Contato</h2>
 
-                    <div class="grupo-formulario">
-                        <label for="subject">Assunto</label>
-                        <select id="subject" name="subject" required>
-                            <option value="">Selecione um assunto</option>
-                            <option value="suporte">Suporte Técnico</option>
-                            <option value="vendas">Dúvidas sobre Vendas</option>
-                            <option value="sugestao">Sugestões</option>
-                            <option value="outro">Outro</option>
-                        </select>
-                    </div>
+				<form id="formulario-contato">
+					<div class="grupo-formulario">
+						<label for="name">Nome completo</label> <input type="text"
+							id="name" name="name" required>
+					</div>
 
-                    <div class="grupo-formulario">
-                        <label for="message"></label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
+					<div class="grupo-formulario">
+						<label for="email">E-mail</label> <input type="email" id="email"
+							name="email" required>
+					</div>
 
-                    <button type="submit">Enviar Mensagem</button>
-                </form>
+					<div class="grupo-formulario">
+						<label for="phone">Telefone</label> <input type="tel" id="phone"
+							name="phone">
+					</div>
 
-                <div class="info-contato">
-                    <h3> Outras formas de contato</h3>
-                    <p>Telefone: (11) 3456-7890</p>
-                    <p>E-mail: contato@pocotoys.com</p>
-                    <p>Horário de atendimento: Segunda a Sexta, 9h às 18h</p>
-                </div>
-            </section><!--fim formularios-->
-        </div>
-    </div>
+					<div class="grupo-formulario">
+						<label for="subject">Assunto</label> <select id="subject"
+							name="subject" required>
+							<option value="">Selecione um assunto</option>
+							<option value="suporte">Suporte Técnico</option>
+							<option value="vendas">Dúvidas sobre Vendas</option>
+							<option value="sugestao">Sugestões</option>
+							<option value="outro">Outro</option>
+						</select>
+					</div>
 
-    <footer>
-        <p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
-        <p>Telefone: (11) 3456-7890 | E-mail: contato@pocotoys.com</p>
-    </footer>
+					<div class="grupo-formulario">
+						<label for="message"></label>
+						<textarea id="message" name="message" rows="5" required></textarea>
+					</div>
 
-    <script>
+					<button type="submit">Enviar Mensagem</button>
+				</form>
+
+				<div class="info-contato">
+					<h3>Outras formas de contato</h3>
+					<p>Telefone: (11) 3456-7890</p>
+					<p>E-mail: contato@pocotoys.com</p>
+					<p>Horário de atendimento: Segunda a Sexta, 9h às 18h</p>
+				</div>
+			</section>
+			<!--fim formularios-->
+		</div>
+	</div>
+
+	<footer>
+		<p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
+		<p>Telefone: (11) 3456-7890 | E-mail: contato@pocotoys.com</p>
+	</footer>
+
+	<script>
         document.getElementById('formulario-contato').addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Obrigado por entrar em contato! Retornaremos em breve.');
