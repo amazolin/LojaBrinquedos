@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Brinquedo</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+</head>
+<body>
+    <h1>Editar Brinquedo</h1>
+
+    <form th:action="@{/administracao/editar}" th:object="${brinquedo}" method="post">
+        <!-- Mantém o ID para atualização correta -->
+        <input type="hidden" th:field="*{id}" />
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" th:field="*{nome}" required />
+
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" th:field="*{marca}" />
+
+        <label for="codigo_brinquedo">Código:</label>
+        <input type="text" id="codigo_brinquedo" th:field="*{codigo_brinquedo}" />
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" th:field="*{descricao}"></textarea>
+
+        <label for="detalhes">Detalhes:</label>
+        <textarea id="detalhes" th:field="*{detalhes}"></textarea>
+
+        <label for="preco">Preço:</label>
+        <input type="text" id="preco" th:field="*{preco}" oninput="this.value = this.value.replace(',', '.');" />
+
+        <label for="imagemBrinquedo">Imagem principal:</label>
+        <input type="text" id="imagemBrinquedo" th:field="*{imagemBrinquedo}" />
+
+        <label for="imagem1">Imagem 1:</label>
+        <input type="text" id="imagem1" th:field="*{imagem1}" />
+
+        <label for="imagem2">Imagem 2:</label>
+        <input type="text" id="imagem2" th:field="*{imagem2}" />
+
+        <label for="imagem3">Imagem 3:</label>
+        <input type="text" id="imagem3" th:field="*{imagem3}" />
+
+        <button type="submit">Salvar</button>
+        <a href="/administracao"><button type="button">Cancelar</button></a>
+    </form>
+</body>
+</html>
