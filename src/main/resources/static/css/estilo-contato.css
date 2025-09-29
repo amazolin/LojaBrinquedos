@@ -23,7 +23,52 @@ body {
     padding: 20px;
 }
 
+/* Botão de login idêntico à página principal */
+.login-btn {
+    position: absolute;
+    top: 40px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    background-color: #CF3050; /* mesma cor da página principal */
+    border-radius: 5px;
+    padding: 10px 20px;
+    white-space: nowrap; /* evita quebra de linha */
+}
 
+.login-btn a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* espaço entre ícone e texto */
+}
+
+.login-btn .icon-miniatura {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.login-btn button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+    width: auto;
+}
+
+.login-btn button:hover {
+    text-decoration: underline;
+}
+
+.login-btn span {
+    margin-right: 10px;
+}
+
+/* Menu de navegação */
 .nav-links {
     display: flex;
     list-style: none;
@@ -67,14 +112,7 @@ h2 {
     margin-top: 20px;
 }
 
-.area-faq {
-    flex: 1;
-    background: white;
-    border-radius: 10px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
+.area-faq,
 .area-contato {
     flex: 1;
     background: white;
@@ -100,7 +138,7 @@ h2 {
 .tabela-perguntas th {
     background-color: #f2f6fc;
     font-weight: bold;
-    color: ff6f61;
+    color: #ff6f61;
 }
 
 .tabela-perguntas tr:nth-child(even) {
@@ -142,10 +180,11 @@ h2 {
     box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.2);
 }
 
-button {
-    background: white;
-    color: #ff6f61;
-    border: 1px solid #ff6f61;
+/* Botões apenas dentro do formulário de contato */
+.area-contato button {
+    background-color: #CF3050;
+    color: white;
+    border: none;
     padding: 12px 25px;
     border-radius: 5px;
     cursor: pointer;
@@ -155,9 +194,8 @@ button {
     width: 100%;
 }
 
-button:hover {
-    background: #ff6f61;
-    color: white;
+.area-contato button:hover {
+    background-color: #e74c3c;
 }
 
 /* Footer */
@@ -179,7 +217,7 @@ footer {
 
 .info-contato h3 {
     margin-bottom: 15px;
-    color: ff6f61;
+    color: #ff6f61;
 }
 
 .info-contato p {

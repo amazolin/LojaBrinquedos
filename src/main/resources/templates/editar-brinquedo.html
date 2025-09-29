@@ -4,46 +4,132 @@
     <meta charset="UTF-8">
     <title>Editar Brinquedo</title>
     <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/estilo-admin.css">
+    <style>
+        .form-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-grid label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-grid input, 
+        .form-grid textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .form-grid textarea {
+            resize: vertical;
+        }
+
+        .form-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .botao-salvar {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .botao-cancelar {
+            background-color: #6c757d;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>Editar Brinquedo</h1>
 
+<header>
+    <h1>Editar Brinquedo</h1>
+    <nav>
+        <a href="/administracao">Voltar à Administração</a>
+    </nav>
+</header>
+
+<div class="form-container">
     <form th:action="@{/administracao/editar}" th:object="${brinquedo}" method="post">
-        <!-- Mantém o ID para atualização correta -->
         <input type="hidden" th:field="*{id}" />
 
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" th:field="*{nome}" required />
+        <div class="form-grid">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" th:field="*{nome}" required />
+            </div>
+            <div>
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" th:field="*{marca}" />
+            </div>
 
-        <label for="marca">Marca:</label>
-        <input type="text" id="marca" th:field="*{marca}" />
+            <div>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" th:field="*{descricao}" rows="4"></textarea>
+            </div>
+            <div>
+                <label for="detalhes">Detalhes:</label>
+                <textarea id="detalhes" th:field="*{detalhes}" rows="4"></textarea>
+            </div>
 
-        <label for="codigo_brinquedo">Código:</label>
-        <input type="text" id="codigo_brinquedo" th:field="*{codigo_brinquedo}" />
+            <div>
+                <label for="preco">Preço:</label>
+                <input type="text" id="preco" th:field="*{preco}" oninput="this.value = this.value.replace(',', '.');" />
+            </div>
+            <div>
+                <label for="imagemBrinquedo">Imagem principal:</label>
+                <input type="text" id="imagemBrinquedo" th:field="*{imagemBrinquedo}" />
+            </div>
 
-        <label for="descricao">Descrição:</label>
-        <textarea id="descricao" th:field="*{descricao}"></textarea>
+            <div>
+                <label for="imagem1">Imagem 1:</label>
+                <input type="text" id="imagem1" th:field="*{imagem1}" />
+            </div>
+            <div>
+                <label for="imagem2">Imagem 2:</label>
+                <input type="text" id="imagem2" th:field="*{imagem2}" />
+            </div>
 
-        <label for="detalhes">Detalhes:</label>
-        <textarea id="detalhes" th:field="*{detalhes}"></textarea>
+            <div>
+                <label for="imagem3">Imagem 3:</label>
+                <input type="text" id="imagem3" th:field="*{imagem3}" />
+            </div>
+        </div>
 
-        <label for="preco">Preço:</label>
-        <input type="text" id="preco" th:field="*{preco}" oninput="this.value = this.value.replace(',', '.');" />
-
-        <label for="imagemBrinquedo">Imagem principal:</label>
-        <input type="text" id="imagemBrinquedo" th:field="*{imagemBrinquedo}" />
-
-        <label for="imagem1">Imagem 1:</label>
-        <input type="text" id="imagem1" th:field="*{imagem1}" />
-
-        <label for="imagem2">Imagem 2:</label>
-        <input type="text" id="imagem2" th:field="*{imagem2}" />
-
-        <label for="imagem3">Imagem 3:</label>
-        <input type="text" id="imagem3" th:field="*{imagem3}" />
-
-        <button type="submit">Salvar</button>
-        <a href="/administracao"><button type="button">Cancelar</button></a>
+        <div class="form-buttons">
+            <button type="submit" class="botao-salvar">Salvar</button>
+            <a href="/administracao"><button type="button" class="botao-cancelar">Cancelar</button></a>
+        </div>
     </form>
+</div>
+
+<footer>
+    <p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
+</footer>
+
 </body>
 </html>

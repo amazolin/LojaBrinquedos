@@ -180,4 +180,11 @@ public class ControladorLoja {
             return "redirect:/loja";
         });
     }
+    @GetMapping("/contato")
+    public String contato(Model model, HttpSession session) {
+        adicionarUsuarioLogado(model, session);
+        return "contato";
+    }
+    
+
 }

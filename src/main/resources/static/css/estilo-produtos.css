@@ -1,27 +1,124 @@
-/* Centraliza o título da página de produtos */
-.titulo-pagina {
-    text-align: center;
-    width: 100%;
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: #ff6f61;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Filtro alinhado à direita */
 .filtro-categorias {
-    display: flex;
-    justify-content: flex-end;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
     gap: 10px;
 }
 
 .filtro-categorias label {
     font-weight: bold;
-    color: #ff6f61;
+    color: #ff6b6b;
 }
 
-.filtro-categorias select {
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: 1px solid #ff9f80;
+.produtos-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.produto {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: #fff;
+}
+
+.produto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.imagem-produto {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.preco {
+    color: #ff6b6b;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    position: relative; /* garante que o login-btn fique dentro do header */
+}
+
+/* Botão de login igual à página principal */
+.login-btn {
+    position: absolute;
+    top: 40px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    background-color: #CF3050; 
+    border-radius: 5px;
+    padding: 10px 20px;
+    z-index: 1000;
+}
+
+.login-btn a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-btn button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.login-btn button:hover {
+    text-decoration: underline;
+}
+
+.login-btn .icon-miniatura {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #ffa28a;
+    padding: 10px 0;
+}
+
+nav a {
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #ff6b6b;
+    color: #fff;
+    margin-top: 40px;
 }
