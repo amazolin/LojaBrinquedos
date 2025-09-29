@@ -38,6 +38,12 @@ public class ControladorLoja {
         }
     }
 
+    // Método auxiliar para verificar admin
+    private boolean isAdmin(HttpSession session) {
+        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+        return isAdmin != null && isAdmin;
+    }
+
     // Páginas básicas
     @GetMapping("/loja")
     public String mostrarMensagem(Model model, HttpSession session) {
@@ -82,6 +88,9 @@ public class ControladorLoja {
     // Administração
     @GetMapping("/administracao")
     public String administracao(Model model, HttpSession session) {
+        if (!isAdmin(session)) {
+            return "redirect:/acesso-negado"; // rota de acesso negado
+        }
         adicionarUsuarioLogado(model, session);
         model.addAttribute("brinquedos", brinquedoService.listarTodos());
         model.addAttribute("brinquedo", new Brinquedo());
@@ -92,6 +101,9 @@ public class ControladorLoja {
     @PostMapping("/administracao/adicionar")
     public String adicionarBrinquedo(@Valid @ModelAttribute Brinquedo brinquedo, BindingResult result,
                                      HttpSession session, Model model) {
+        if (!isAdmin(session)) {
+            return "redirect:/acesso-negado";
+        }
         adicionarUsuarioLogado(model, session);
         if (result.hasErrors()) {
             model.addAttribute("brinquedos", brinquedoService.listarTodos());
@@ -104,6 +116,9 @@ public class ControladorLoja {
     // Editar brinquedo (GET)
     @GetMapping("/administracao/editar/{id}")
     public String editarBrinquedoForm(@PathVariable("id") Long id, Model model, HttpSession session) {
+        if (!isAdmin(session)) {
+            return "redirect:/acesso-negado";
+        }
         adicionarUsuarioLogado(model, session);
         Brinquedo brinquedo = brinquedoService.buscarPorId(id)
                 .orElseThrow(() -> new IllegalArgumentException("Brinquedo inválido: " + id));
@@ -115,6 +130,9 @@ public class ControladorLoja {
     @PostMapping("/administracao/editar")
     public String atualizarBrinquedo(@Valid @ModelAttribute Brinquedo brinquedo, BindingResult result,
                                      HttpSession session, Model model) {
+        if (!isAdmin(session)) {
+            return "redirect:/acesso-negado";
+        }
         adicionarUsuarioLogado(model, session);
         if (result.hasErrors()) {
             return "editar-brinquedo";
@@ -126,6 +144,9 @@ public class ControladorLoja {
     // Excluir brinquedo
     @GetMapping("/administracao/excluir/{id}")
     public String excluirBrinquedo(@PathVariable("id") Long id, HttpSession session) {
+        if (!isAdmin(session)) {
+            return "redirect:/acesso-negado";
+        }
         brinquedoService.deletar(id);
         return "redirect:/administracao";
     }
@@ -180,11 +201,11 @@ public class ControladorLoja {
             return "redirect:/loja";
         });
     }
+
     @GetMapping("/contato")
     public String contato(Model model, HttpSession session) {
         adicionarUsuarioLogado(model, session);
         return "contato";
     }
-    
 
 }
