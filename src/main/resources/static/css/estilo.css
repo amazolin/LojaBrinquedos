@@ -10,47 +10,71 @@
 }
 
 /* Estilo para o botão de login */
+/* ===== ÁREA DE LOGIN - ESTILO UNIFICADO ===== */
+
+/* Container principal que posiciona o botão no canto da tela */
 .login-btn {
     position: absolute;
-    top: 40px;
-    right: 30px;
+    top: 20px; /* Um pouco mais para cima */
+    right: 20px;
+    background-color: #CF3050;
+    border-radius: 8px; /* Bordas um pouco mais suaves */
+    padding: 8px 12px; /* Padding menor para um visual mais compacto */
+    z-index: 1000;
+    display: flex; /* Essencial para alinhar os itens de dentro */
+    align-items: center; /* Alinha verticalmente */
+    gap: 10px; /* Cria um espaço entre o ícone e os textos */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra suave */
+}
+
+/* Estilo para o ícone do usuário */
+.login-btn .icon-miniatura {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+/* Container para agrupar "Olá, Nome" e "Sair" */
+.login-btn .usuario-info {
     display: flex;
-    align-items: center;
-    background-color: #CF3050; /* cor do botão */
-    border-radius: 5px;
-    padding: 10px 20px;
+    flex-direction: column; /* Coloca um texto em cima do outro */
+    align-items: flex-start; /* Alinha os textos à esquerda */
+    line-height: 1.2; /* Espaçamento entre linhas mais justo */
+    color: white;
 }
 
-.icon-miniatura {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%; /* Deixe redondo se for avatar */
-    margin-right: 10px;
+/* Estilo para o nome do usuário */
+.login-btn .usuario-info span {
+    font-weight: bold;
+    font-size: 0.9em;
 }
 
+/* Estilo para o link de "Sair" */
+.login-btn .usuario-info .btn-logout {
+    color: #ffdddd; /* Um vermelho mais claro para não chamar tanta atenção */
+    font-size: 0.8em;
+    text-decoration: none;
+}
+.login-btn .usuario-info .btn-logout:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para o botão "Entre ou Cadastre-se" quando deslogado */
 .login-btn a {
     color: white;
     text-decoration: none;
     display: flex;
     align-items: center;
+    gap: 10px;
 }
-
 .login-btn button {
     background: none;
     border: none;
     color: white;
     font-size: 14px;
     cursor: pointer;
+    padding: 0;
 }
-
-.login-btn button:hover {
-    text-decoration: underline;
-}
-
-.login-btn span {
-    margin-right: 10px;
-}
-
 
 body {
     font-family: Arial, sans-serif;

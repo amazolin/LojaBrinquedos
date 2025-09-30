@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <title>Administração - Loja de Brinquedos</title>
     <link rel="stylesheet" href="/css/estilo.css">
     <link rel="stylesheet" href="/css/estilo-admin.css">
 </head>
-
 <body>
     <header>
         <h1>Administração</h1>
     </header>
-
     <nav>
         <a href="/loja">Início</a>
         <a href="/produtos">Produtos</a>
@@ -26,8 +23,7 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Detalhes</th>
+                    <th>Categoria</th>
                     <th>Preço</th>
                     <th>Marca</th>
                     <th>Imagem</th>
@@ -37,13 +33,10 @@
             <tbody>
                 <tr th:each="brinquedo : ${brinquedos}">
                     <td th:text="${brinquedo.nome}">Nome do Brinquedo</td>
-                    <td th:text="${brinquedo.descricao}">Descrição</td>
-                    <td th:text="${brinquedo.detalhes}">Detalhes</td>
-                    <td th:text="${brinquedo.preco}">R$ 0,00</td>
+                    <td th:text="${brinquedo.categoria != null ? brinquedo.categoria.nome : 'Sem Categoria'}">Categoria</td>
+                    <td th:text="${'R$ ' + #numbers.formatDecimal(brinquedo.preco, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</td>
                     <td th:text="${brinquedo.marca}">Marca</td>
-                    <td>
-                        <img th:src="${brinquedo.imagemBrinquedo}" alt="Imagem" style="width:50px; height:50px;">
-                    </td>
+                    <td><img th:src="${brinquedo.imagemBrinquedo}" alt="Imagem" style="width:50px; height:50px;"></td>
                     <td>
                         <a th:href="@{'/administracao/editar/' + ${brinquedo.id}}" class="btn-editar">Editar</a> -
                         <a th:href="@{'/administracao/excluir/' + ${brinquedo.id}}" class="btn-excluir">Excluir</a>
@@ -55,45 +48,51 @@
         <button id="btnAbrirModal" class="botao-adicionar">Adicionar Novo Brinquedo</button>
     </div>
 
-    <!-- Modal para adicionar brinquedo -->
     <div id="modalAdicionar" class="modal">
         <div class="modal-conteudo">
             <span class="fechar-modal">&times;</span>
             <h2>Adicionar novo brinquedo</h2>
-
             <form class="form-admin" th:action="@{/administracao/adicionar}" th:object="${brinquedo}" method="post">
+                
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" th:field="*{nome}" required>
 
+                <label for="categoria">Categoria:</label>
+                <select id="categoria" th:field="*{categoria}" required>
+                    <option value="">Selecione uma categoria</option>
+                    <option th:each="cat : ${categorias}"
+                            th:value="${cat.id}"
+                            th:text="${cat.nome}"></option>
+                </select>
+
                 <label for="preco">Preço:</label>
                 <input type="text" id="preco" th:field="*{preco}" required oninput="this.value = this.value.replace(',', '.');">
-
+                
                 <label for="descricao">Descrição:</label>
                 <textarea id="descricao" th:field="*{descricao}" required></textarea>
-
+                
                 <label for="detalhes">Detalhes:</label>
                 <textarea id="detalhes" th:field="*{detalhes}"></textarea>
-
+                
                 <label for="marca">Marca:</label>
                 <input type="text" id="marca" th:field="*{marca}">
-
+                
                 <label for="imagemBrinquedo">Imagem principal (URL):</label>
                 <input type="text" id="imagemBrinquedo" th:field="*{imagemBrinquedo}" placeholder="/images/nome.jpg">
-
+                
                 <label for="imagem1">Imagem 1 (URL):</label>
-                <input type="text" id="imagem1" th:field="*{imagem1}" placeholder="/images/nome1.jpg">
-
+                <input type="text" id="imagem1" th:field="*{imagem1}">
+                
                 <label for="imagem2">Imagem 2 (URL):</label>
-                <input type="text" id="imagem2" th:field="*{imagem2}" placeholder="/images/nome2.jpg">
-
+                <input type="text" id="imagem2" th:field="*{imagem2}">
+                
                 <label for="imagem3">Imagem 3 (URL):</label>
-                <input type="text" id="imagem3" th:field="*{imagem3}" placeholder="/images/nome3.jpg">
-
+                <input type="text" id="imagem3" th:field="*{imagem3}">
+                
                 <button type="submit">Adicionar Brinquedo</button>
             </form>
         </div>
     </div>
-
     <script src="/js/modal.js"></script>
 </body>
 </html>

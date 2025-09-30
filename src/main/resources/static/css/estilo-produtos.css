@@ -22,6 +22,20 @@
     gap: 20px;
 }
 
+header h1 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    pointer-events: none;
+    font-size: 2em;
+}
+
+header {
+    position: relative;
+}
+
 .produto {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -48,6 +62,7 @@
     margin-top: 5px;
 }
 
+
 header {
     display: flex;
     justify-content: space-between;
@@ -55,14 +70,11 @@ header {
     padding: 15px 20px;
     background-color: #ff6b6b;
     color: #fff;
-    position: relative; /* garante que o login-btn fique dentro do header */
 }
 
 /* Botão de login igual à página principal */
 .login-btn {
-    position: absolute;
-    top: 40px;
-    right: 30px;
+    position: static;
     display: flex;
     align-items: center;
     background-color: #CF3050; 
@@ -121,4 +133,41 @@ footer {
     background-color: #ff6b6b;
     color: #fff;
     margin-top: 40px;
+}
+
+/* Container para o cabeçalho da lista de produtos */
+.produtos-header {
+    display: flex;                 /* Alinha os itens na horizontal */
+    justify-content: space-between; /* Coloca um item no início e outro no fim */
+    align-items: center;           /* Centraliza os itens verticalmente */
+    margin-bottom: 30px;           /* Espaço antes da lista de produtos */
+}
+
+/* Remove a margem de baixo do filtro, pois já está no .produtos-header */
+.filtro-categorias {
+    margin-bottom: 0; 
+}
+
+/* Garante que o container principal esteja centralizado na página */
+/* Novo e mais específico */
+#pagina-produtos .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    
+    /* Importante: Redefine as propriedades flexbox aqui, caso necessário */
+    display: block; 
+}
+
+/* Centraliza o título na página de produtos */
+#pagina-produtos .titulo-pagina {
+    text-align: center;
+    margin-bottom: 15px; /* Adiciona um espaço antes do filtro */
+}
+
+/* Garante que o container do filtro fique alinhado à direita */
+.posiciona-filtro {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px; /* Espaço entre o filtro e a lista de produtos */
 }

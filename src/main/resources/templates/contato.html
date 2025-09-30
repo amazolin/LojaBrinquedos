@@ -22,12 +22,13 @@
 			</a>
 
 			<!-- Se o usuário estiver logado -->
-			<div th:if="${nomeUsuario != null}">
-				<img src="/images/usuario.png" alt="Ícone de usuário"
-					class="icon-miniatura"> <span
-					th:text="'Olá, ' + ${nomeUsuario}"></span> <a href="/logout"
-					class="btn-logout">Sair</a>
-			</div>
+			<th:block th:if="${nomeUsuario != null}">
+            <img src="/images/usuario.png" alt="Ícone de usuário" class="icon-miniatura">
+            <div class="usuario-info">
+                <span th:text="'Olá, ' + ${nomeUsuario}"></span>
+                <a href="/logout" class="btn-logout">Sair</a>
+            </div>
+        </th:block>
 		</div>
 	</header>
 

@@ -5,131 +5,58 @@
     <title>Editar Brinquedo</title>
     <link rel="stylesheet" href="/css/estilo.css">
     <link rel="stylesheet" href="/css/estilo-admin.css">
-    <style>
-        .form-container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-grid label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .form-grid input, 
-        .form-grid textarea {
-            width: 100%;
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .form-grid textarea {
-            resize: vertical;
-        }
-
-        .form-buttons {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .form-buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .botao-salvar {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .botao-cancelar {
-            background-color: #6c757d;
-            color: white;
-        }
-    </style>
-</head>
+    </head>
 <body>
-
 <header>
     <h1>Editar Brinquedo</h1>
     <nav>
         <a href="/administracao">Voltar à Administração</a>
     </nav>
 </header>
-
-<div class="form-container">
+<div class="form-container" style="max-width: 600px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 8px;">
     <form th:action="@{/administracao/editar}" th:object="${brinquedo}" method="post">
         <input type="hidden" th:field="*{id}" />
 
-        <div class="form-grid">
-            <div>
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" th:field="*{nome}" required />
-            </div>
-            <div>
-                <label for="marca">Marca:</label>
-                <input type="text" id="marca" th:field="*{marca}" />
-            </div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" th:field="*{nome}" required style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
+        
+        <label for="categoria">Categoria:</label>
+        <select id="categoria" th:field="*{categoria}" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
+            <option value="">Selecione uma categoria</option>
+            <option th:each="cat : ${categorias}"
+                    th:value="${cat.id}"
+                    th:text="${cat.nome}"></option>
+        </select>
+        
+        <label for="preco">Preço:</label>
+        <input type="text" id="preco" th:field="*{preco}" required oninput="this.value = this.value.replace(',', '.');" style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
+        
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" th:field="*{marca}" style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
+        
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" th:field="*{descricao}" rows="3" style="width: 100%; padding: 8px; margin-bottom: 10px;"></textarea>
+        
+        <label for="detalhes">Detalhes:</label>
+        <textarea id="detalhes" th:field="*{detalhes}" rows="3" style="width: 100%; padding: 8px; margin-bottom: 10px;"></textarea>
+        
+        <label for="imagemBrinquedo">Imagem principal (URL):</label>
+        <input type="text" id="imagemBrinquedo" th:field="*{imagemBrinquedo}" style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
 
-            <div>
-                <label for="descricao">Descrição:</label>
-                <textarea id="descricao" th:field="*{descricao}" rows="4"></textarea>
-            </div>
-            <div>
-                <label for="detalhes">Detalhes:</label>
-                <textarea id="detalhes" th:field="*{detalhes}" rows="4"></textarea>
-            </div>
+        <label for="imagem1">Imagem 1 (URL):</label>
+        <input type="text" id="imagem1" th:field="*{imagem1}" style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
 
-            <div>
-                <label for="preco">Preço:</label>
-                <input type="text" id="preco" th:field="*{preco}" oninput="this.value = this.value.replace(',', '.');" />
-            </div>
-            <div>
-                <label for="imagemBrinquedo">Imagem principal:</label>
-                <input type="text" id="imagemBrinquedo" th:field="*{imagemBrinquedo}" />
-            </div>
+        <label for="imagem2">Imagem 2 (URL):</label>
+        <input type="text" id="imagem2" th:field="*{imagem2}" style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
 
-            <div>
-                <label for="imagem1">Imagem 1:</label>
-                <input type="text" id="imagem1" th:field="*{imagem1}" />
-            </div>
-            <div>
-                <label for="imagem2">Imagem 2:</label>
-                <input type="text" id="imagem2" th:field="*{imagem2}" />
-            </div>
+        <label for="imagem3">Imagem 3 (URL):</label>
+        <input type="text" id="imagem3" th:field="*{imagem3}" style="width: 100%; padding: 8px; margin-bottom: 10px;"/>
 
-            <div>
-                <label for="imagem3">Imagem 3:</label>
-                <input type="text" id="imagem3" th:field="*{imagem3}" />
-            </div>
-        </div>
-
-        <div class="form-buttons">
-            <button type="submit" class="botao-salvar">Salvar</button>
-            <a href="/administracao"><button type="button" class="botao-cancelar">Cancelar</button></a>
+        <div style="margin-top: 20px;">
+            <button type="submit" style="padding: 10px 15px; background-color: #28a745; color: white; border: none; border-radius: 4px;">Salvar Alterações</button>
+            <a href="/administracao" style="padding: 10px 15px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 4px;">Cancelar</a>
         </div>
     </form>
 </div>
-
-<footer>
-    <p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
-</footer>
-
 </body>
 </html>

@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Loja de Brinquedos</title>
-<link rel="stylesheet" href="/css/estilo.css">
-<link rel="stylesheet" href="/css/carrossel.css">
-</head>
-<body>
 
+<head>
+	<meta charset="UTF-8">
+	<title>Loja de Brinquedos</title>
+	<link rel="stylesheet" href="/css/estilo.css">
+	<link rel="stylesheet" href="/css/carrossel.css">
+</head>
+
+<body>
 	<header>
 		<h1 th:text="${mensagem}">Bem-vindo à PocoToys!</h1>
-
 		<div class="login-btn">
-			<!-- Se o usuário NÃO estiver logado -->
 			<a th:if="${nomeUsuario == null}" href="/cadastro">
 				<img src="/images/usuario.png" alt="Ícone de usuário" class="icon-miniatura">
-				<span>Boas vindas :)</span>
-				<button>Entre ou Cadastre-se</button>
+				<span>Boas vindas :)</span><button>Entre ou Cadastre-se</button>
 			</a>
-
-			<!-- Se o usuário estiver logado -->
-			<div th:if="${nomeUsuario != null}">
+			<th:block th:if="${nomeUsuario != null}">
 				<img src="/images/usuario.png" alt="Ícone de usuário" class="icon-miniatura">
-				<span th:text="'Olá, ' + ${nomeUsuario}"></span>
-				<a href="/logout" class="btn-logout">Sair</a>
-			</div>
+				<div class="usuario-info">
+					<span th:text="'Olá, ' + ${nomeUsuario}"></span>
+					<a href="/logout" class="btn-logout">Sair</a>
+				</div>
+			</th:block>
+			       
 		</div>
 	</header>
 
@@ -33,47 +32,19 @@
 		<a href="/produtos">Produtos</a>
 		<a href="/contato">Contato</a>
 		<a href="/sobre">Sobre</a>
-
-		<!-- Link só aparece para administradores -->
 		<a th:if="${isAdmin}" href="/administracao">Administração</a>
 	</nav>
 
 	<div class="container">
-		<h2 class="titulo-mais-vendidos">Produtos mais vendidos</h2>
+		<h2 class="titulo-mais-vendidos">Produtos em destaque</h2>
 
-		<div class="produto">
-			<div class="carrossel-labubu">
-				<button class="btn-prev">&#10094;</button>
-
-				<div class="imagens-principais">
-					<img src="/images/labubu1.png" alt="Labubu 1" class="imagem-ativa">
-					<img src="/images/labubu2.webp" alt="Labubu 2">
-					<img src="/images/labubu3.webp" alt="Labubu 3">
-				</div>
-
-				<button class="btn-next">&#10095;</button>
-
-				<div class="miniaturas">
-					<img src="/images/labubu1.png" alt="Miniatura 1" data-index="0" class="miniatura-ativa">
-					<img src="/images/labubu2.webp" alt="Miniatura 2" data-index="1">
-					<img src="/images/labubu3.webp" alt="Miniatura 3" data-index="2">
-				</div>
-			</div>
-
-			<h3>Labubu</h3>
-			<p>R$ 49,90</p>
-		</div>
-
-		<div class="produto">
-			<img th:src="@{/images/carrinho.png}" alt="Carrinho" class="imagem-produto">
-			<h3>Carrinho</h3>
-			<p>R$ 79,90</p>
-		</div>
-
-		<div class="produto">
-			<img th:src="@{/images/blocos.png}" alt="Blocos para montar" class="imagem-produto">
-			<h3>Blocos para montar</h3>
-			<p>R$ 29,90</p>
+		<div class="produto" th:each="produto : ${produtos}">
+			<a th:href="@{'/brinquedo?id=' + ${produto.id}}">
+				<img th:src="@{${produto.imagemBrinquedo}}" th:alt="${produto.nome}" class="imagem-produto">
+				<h3 th:text="${produto.nome}">Nome do Produto</h3>
+				<p class="preco" th:text="${'R$ ' + #numbers.formatDecimal(produto.preco, 1, 'POINT', 2, 'COMMA')}">R$
+					0,00</p>
+			</a>
 		</div>
 	</div>
 
@@ -81,6 +52,6 @@
 		<p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
 	</footer>
 	<script src="/js/carrossel.js"></script>
-
 </body>
+
 </html>
