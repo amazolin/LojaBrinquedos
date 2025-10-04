@@ -1,14 +1,14 @@
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
 }
 
 .filtro-categorias {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .filtro-categorias label {

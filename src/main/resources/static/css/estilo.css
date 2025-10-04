@@ -65,7 +65,7 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 10px; 
 }
 .login-btn button {
     background: none;
