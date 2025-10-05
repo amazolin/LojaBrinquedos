@@ -21,9 +21,26 @@
     <div class="container">
         <div th:if="${brinquedo}" class="detalhe-container">
             
-            <div class="detalhe-imagem">
+            <div class="detalhe-imagem" style="display: flex; flex-direction: column; align-items: center;">
                 <img th:src="${brinquedo.imagemBrinquedo != null ? brinquedo.imagemBrinquedo : '/images/placeholder.png'}" 
-                     th:alt="${brinquedo.nome}">
+                     th:alt="${brinquedo.nome}" style="max-width: 350px; border-radius: 10px; margin-bottom: 16px;">
+
+                <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                    <form th:if="${podeInteragir}" th:action="@{/brinquedo/interesse}" method="post" style="margin-top: 0;">
+                        <input type="hidden" name="id" th:value="${brinquedo.id}" />
+                        <button type="submit"
+                            th:text="${temInteresse} ? 'Remover interesse' : 'Tenho interesse'"
+                            th:classappend="${temInteresse} ? ' interesse-ativo' : ''"
+                            style="padding: 10px 20px; font-size: 1.1em; border-radius: 6px; border: none; background: #ffb347; color: #222; cursor: pointer;">
+                        </button>
+                    </form>
+                    <div th:if="${!podeInteragir}" style="margin-top: 0; color: #b00; font-size: 1em; text-align: center;">
+                        <span>Faça login para marcar interesse neste brinquedo.</span>
+                    </div>
+                    <div style="margin-top: 10px; color: #888; font-size: 0.95em; text-align: center;">
+                        <span th:text="'Total de interessados: ' + ${brinquedo.interesse}"></span>
+                    </div>
+                </div>
             </div>
 
             <div class="detalhe-info">

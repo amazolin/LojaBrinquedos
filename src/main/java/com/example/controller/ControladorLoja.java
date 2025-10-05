@@ -56,11 +56,13 @@ public class ControladorLoja {
     public String mostrarMensagem(Model model, HttpSession session) {
         adicionarUsuarioLogado(model, session);
         model.addAttribute("mensagem", "Bem-vindo a Pocotoys!");
-        
-        // Carrega até 3 brinquedos para a página inicial como destaque
-        List<Brinquedo> produtosEmDestaque = brinquedoService.listarTodos().stream().limit(3).collect(Collectors.toList());
+        // Carrega até 3 brinquedos mais "interessados" para a página inicial como destaque
+        List<Brinquedo> produtosEmDestaque = brinquedoService.listarTodos()
+            .stream()
+            .sorted((b1, b2) -> Integer.compare(b2.getInteresse(), b1.getInteresse()))
+            .limit(3)
+            .collect(Collectors.toList());
         model.addAttribute("produtos", produtosEmDestaque);
-        
         String erroLogin = (String) session.getAttribute("erroLogin");
         if (erroLogin != null) {
             model.addAttribute("erroLogin", erroLogin);
@@ -104,10 +106,52 @@ public class ControladorLoja {
     @GetMapping("/brinquedo")
     public String detalheBrinquedo(@RequestParam("id") Long id, Model model, HttpSession session) {
         adicionarUsuarioLogado(model, session);
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+        boolean podeInteragir = usuario != null;
+        boolean temInteresse = false;
+        if (podeInteragir) {
+            @SuppressWarnings("unchecked")
+            List<Long> interesses = (List<Long>) session.getAttribute("interesses");
+            if (interesses == null) interesses = new java.util.ArrayList<>();
+            temInteresse = interesses.contains(id);
+        }
+        final boolean finalTemInteresse = temInteresse;
+        final boolean finalPodeInteragir = podeInteragir;
         return brinquedoService.buscarPorId(id).map(brinquedo -> {
             model.addAttribute("brinquedo", brinquedo);
+            model.addAttribute("temInteresse", finalTemInteresse);
+            model.addAttribute("podeInteragir", finalPodeInteragir);
             return "brinquedo-detalhe";
         }).orElse("redirect:/produtos");
+    }
+
+    // Endpoint para alternar interesse (on/off)
+    @PostMapping("/brinquedo/interesse")
+    public String alternarInteresse(@RequestParam("id") Long id, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuario == null) {
+            // Não permite alterar interesse sem login
+            return "redirect:/brinquedo?id=" + id;
+        }
+        @SuppressWarnings("unchecked")
+        List<Long> interesses = (List<Long>) session.getAttribute("interesses");
+        if (interesses == null) {
+            interesses = new java.util.ArrayList<>();
+        }
+        boolean temInteresse = interesses.contains(id);
+        Brinquedo brinquedo = brinquedoService.buscarPorId(id).orElse(null);
+        if (brinquedo != null) {
+            if (temInteresse) {
+                interesses.remove(id);
+                brinquedo.setInteresse(Math.max(0, brinquedo.getInteresse() - 1));
+            } else {
+                interesses.add(id);
+                brinquedo.setInteresse(brinquedo.getInteresse() + 1);
+            }
+            brinquedoService.salvar(brinquedo);
+        }
+        session.setAttribute("interesses", interesses);
+        return "redirect:/brinquedo?id=" + id;
     }
 
     // ATUALIZADO: /administracao (GET) carrega categorias para o formulário

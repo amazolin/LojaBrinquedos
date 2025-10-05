@@ -37,4 +37,11 @@ public class BrinquedoService {
     public void deletar(Long id) {
         brinquedoRepository.deleteById(id);
     }
+
+        // Lista todos os brinquedos ordenados por interesse (maior primeiro)
+    public List<Brinquedo> listarTodosPorInteresse() {
+        return listarTodos().stream()
+            .sorted((b1, b2) -> Integer.compare(b2.getInteresse(), b1.getInteresse()))
+            .toList();
+    }
 }

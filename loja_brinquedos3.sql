@@ -44,13 +44,19 @@ INSERT INTO `categorias` (`id_categoria`, `nome_categoria`) VALUES
 (6, 'Bonecas e Acessórios'),
 (7, 'Veículos'),
 (8, 'Jogos de Tabuleiro e Quebra Cabeça'),
-(9, 'Mundo Pocotoys');
+(9, 'Mundo Pocotoys'),
+(10, 'Pelúcias'),
+(11, 'Educativos e Científicos'),
+(12, 'Instrumentos Musicais'),
+(13, 'Artigos Esportivos'),
+(14, 'Fantasias');
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para tabela `brinquedos3`
 --
+
 CREATE TABLE `brinquedos3` (
   `id_brinquedo` int(11) NOT NULL AUTO_INCREMENT,
   `nome_brinquedo` varchar(255) NOT NULL,
@@ -63,6 +69,7 @@ CREATE TABLE `brinquedos3` (
   `imagem1` varchar(255) DEFAULT NULL,
   `imagem2` varchar(255) DEFAULT NULL,
   `imagem3` varchar(255) DEFAULT NULL,
+  `interesse` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_brinquedo`),
   KEY `fk_brinquedo_categoria_idx` (`id_categoria_fk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -70,12 +77,19 @@ CREATE TABLE `brinquedos3` (
 --
 -- 
 --
-INSERT INTO `brinquedos3` (`id_brinquedo`, `nome_brinquedo`, `descricao`, `detalhes`, `preco`, `marca`, `id_categoria_fk`, `imagem_brinquedo`, `imagem1`, `imagem2`, `imagem3`) VALUES
-(1, 'Labubu The Monsters', 'Action figure colecionável da série The Monsters.', 'Feito de vinil de alta qualidade, 15cm de altura.', 49.90, 'Pop Mart', 1, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL),
-(2, 'Carrinho de Controle Remoto', 'Carrinho de corrida com controle remoto, alta velocidade.', 'Bateria recarregável, alcance de 50 metros.', 79.90, 'Hot Wheels', 2, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL),
-(3, 'Blocos para Montar', 'Kit com 500 blocos de montar para estimular a criatividade.', 'Material plástico atóxico, recomendado para maiores de 5 anos.', 29.90, 'Mega Blocks', 3, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL),
-(4, 'Batman Action Figure', 'Boneco do Batman com 11 pontos de articulação.', 'Acompanha capa de tecido e bat-rang.', 129.90, 'DC Comics', 5, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL);
-
+INSERT INTO `brinquedos3` (`id_brinquedo`, `nome_brinquedo`, `descricao`, `detalhes`, `preco`, `marca`, `id_categoria_fk`, `imagem_brinquedo`, `imagem1`, `imagem2`, `imagem3`, `interesse`) VALUES
+(1, 'Labubu The Monsters', 'Action figure colecionável da série The Monsters.', 'Feito de vinil de alta qualidade, 15cm de altura.', 49.90, 'Pop Mart', 1, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(2, 'Carrinho de Controle Remoto', 'Carrinho de corrida com controle remoto, alta velocidade.', 'Bateria recarregável, alcance de 50 metros.', 79.90, 'Hot Wheels', 2, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(3, 'Blocos para Montar', 'Kit com 500 blocos de montar para estimular a criatividade.', 'Material plástico atóxico, recomendado para maiores de 5 anos.', 29.90, 'Mega Blocks', 3, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(4, 'Batman Action Figure', 'Boneco do Batman com 11 pontos de articulação.', 'Acompanha capa de tecido e bat-rang.', 129.90, 'DC Comics', 5, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(5, 'Boneca Clássica Princesa', 'Boneca de princesa com vestido de gala e acessórios.', '30cm de altura, inclui sapatos e coroa removíveis.', 89.90, 'Estrela', 6, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(6, 'Jogo de Tabuleiro - Aventura Espacial', 'Jogo de estratégia para toda a família com tema espacial.', 'Para 2 a 4 jogadores, idade recomendada: 8+.', 99.90, 'Galápagos Jogos', 8, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(7, 'LEGO City - Delegacia de Polícia', 'Conjunto completo da delegacia de polícia de LEGO City.', 'Inclui 3 minifiguras, carro de polícia e helicóptero. 668 peças.', 299.90, 'LEGO', 3, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(8, 'Urso de Pelúcia Gigante', 'Urso de pelúcia super macio e fofinho.', 'Material antialérgico, 80cm de altura sentado.', 149.90, 'Fofy Toys', 10, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(9, 'Kit de Química para Crianças', 'Realize mais de 50 experimentos químicos seguros e divertidos.', 'Inclui tubos de ensaio, óculos de proteção e reagentes não-tóxicos.', 75.50, 'Science4you', 11, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(10, 'Teclado Musical Infantil', 'Mini teclado com 32 teclas, ritmos e sons de animais.', 'Funciona com pilhas (não inclusas), microfone embutido.', 119.90, 'FunKey', 12, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(11, 'Quebra-Cabeça 1000 Peças - Paisagem Alpina', 'Desafie sua mente com esta bela paisagem dos Alpes.', 'Tamanho montado: 68 x 49 cm. Peças com encaixe perfeito.', 59.90, 'Grow', 8, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0),
+(12, 'Homem-Aranha Action Figure', 'Boneco do Homem-Aranha da série Marvel Legends.', 'Altamente articulado, inclui troca de mãos e efeitos de teia.', 159.90, 'Hasbro', 5, 'https://clan.akamai.steamstatic.com/images/3953147/9f2582825999fe009cc76a2414e9a3cac8dc5d0b_400x225.png', NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 

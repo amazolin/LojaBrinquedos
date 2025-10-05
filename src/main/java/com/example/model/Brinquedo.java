@@ -54,6 +54,9 @@ public class Brinquedo {
     @Column(name = "imagem3")
     private String imagem3;
 
+    @Column(name = "interesse")
+    private int interesse;
+
     // Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -80,4 +83,7 @@ public class Brinquedo {
     public void setImagem2(String imagem2) { this.imagem2 = imagem2; }
     public String getImagem3() { return imagem3; }
     public void setImagem3(String imagem3) { this.imagem3 = imagem3; }
+
+    public int getInteresse() { return interesse; }
+    public void setInteresse(int interesse) { this.interesse = interesse; }
 }

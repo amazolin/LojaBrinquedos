@@ -59,6 +59,8 @@
                     <img th:src="@{${produto.imagemBrinquedo}}" th:alt="${produto.nome}" class="imagem-produto">
                     <h3 th:text="${produto.nome}">Nome do Produto</h3>
                     <p class="preco" th:text="${'R$ ' + #numbers.formatDecimal(produto.preco, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</p>
+                    <span style="display:block; color:#888; font-size:0.95em; margin-top:4px;"
+                          th:text="'Interessados: ' + ${produto.interesse}"></span>
                 </a>
             </div>
         </div>
