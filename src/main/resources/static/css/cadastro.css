@@ -16,7 +16,7 @@
 
 .tab {
     padding: 10px 20px;
-    background-color: #FF6F61;
+    background-color: #C4A500;
     color: white;
     border: none;
     border-radius: 5px 5px 0 0;
@@ -26,11 +26,11 @@
 }
 
 .tab:hover {
-    background-color: #e85a4f;
+    background-color: #FFD52D;
 }
 
 .tab.active {
-    background-color: #e85a4f;
+    background-color: #FFD52D;
     font-weight: bold;
 }
 
@@ -75,7 +75,7 @@
 /* Botões */
 button {
     padding: 10px 20px;
-    background-color: #FF6F61;
+    background-color: #FFD52D;
     color: white;
     border: none;
     border-radius: 5px;
@@ -86,6 +86,40 @@ button {
 }
 
 button:hover {
-    background-color: #e85a4f;
+    background-color: #FFE017;
 }
 
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 20px;
+	background-color: #C4A500;
+	color: #fff;
+}
+
+header {
+    position: relative;
+}
+
+h1 {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	text-align: center;
+	pointer-events: none;
+	font-size: 2em;
+}
+
+.logo {
+    margin: 10px;
+    text-align: left;
+	position: relative; /* Isso vai permitir o movimento sem afetar o layout */
+	transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+}
+
+.logo:hover{
+	transform: translateY(-5px);
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}

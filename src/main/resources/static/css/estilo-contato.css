@@ -6,7 +6,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    background-color: #f0fff0;
     color: #333;
     line-height: 1.6;
     min-height: 100vh;
@@ -14,13 +14,14 @@ body {
 }
 
 #segundo-titulo {
-    color: #ff6f61;
+    color: #96C94B;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+	padding-top: 50px;
 }
 
 /* Botão de login idêntico à página principal */
@@ -30,7 +31,7 @@ body {
     right: 30px;
     display: flex;
     align-items: center;
-    background-color: #CF3050; /* mesma cor da página principal */
+    background-color: #AED136; /* mesma cor da página principal */
     border-radius: 5px;
     padding: 10px 20px;
     white-space: nowrap; /* evita quebra de linha */
@@ -91,18 +92,20 @@ body {
 
 /* Títulos */
 h1 {
-    text-align: center;
-    margin: 30px 0;
-    color: #ffffff;
-    font-size: 2.5rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+	position: absolute;
+	    left: 0;
+	    right: 0;
+	    margin: 0 auto;
+	    text-align: center;
+	    pointer-events: none;
+	    font-size: 2em;
 }
 
 h2 {
-    color: #ff6f61;
+    color: #96C94B;
     margin: 25px 0 15px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #ff6f61;
+    border-bottom: 2px solid #96C94B;
 }
 
 /* Layout de duas colunas */
@@ -130,7 +133,7 @@ h2 {
 
 .tabela-perguntas th,
 .tabela-perguntas td {
-    border: 1px solid #ff6f61;
+    border: 1px solid #96C94B;
     padding: 15px;
     text-align: left;
 }
@@ -138,7 +141,7 @@ h2 {
 .tabela-perguntas th {
     background-color: #f2f6fc;
     font-weight: bold;
-    color: #ff6f61;
+    color: #96C94B;
 }
 
 .tabela-perguntas tr:nth-child(even) {
@@ -166,7 +169,7 @@ h2 {
 .grupo-formulario select {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ff6f61;
+    border: 1px solid #96C94B;
     border-radius: 5px;
     font-size: 1rem;
     transition: border-color 0.3s;
@@ -176,13 +179,13 @@ h2 {
 .grupo-formulario textarea:focus,
 .grupo-formulario select:focus {
     outline: none;
-    border-color: #ff6f61;
+    border-color: #96C94B;
     box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.2);
 }
 
 /* Botões apenas dentro do formulário de contato */
 .area-contato button {
-    background-color: #CF3050;
+    background-color: #6DBA27;
     color: white;
     border: none;
     padding: 12px 25px;
@@ -195,12 +198,31 @@ h2 {
 }
 
 .area-contato button:hover {
-    background-color: #e74c3c;
+    background-color: #6Ddf27;
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 20px;
+	background-color: #6DBA27;
+	color: #fff;
+}
+
+header {
+    position: relative;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #96C94B;
+    padding: 10px 0;
 }
 
 /* Footer */
 footer {
-    background: #ff6f61;
+    background: #6DBA27;
     color: white;
     text-align: center;
     padding: 20px;
@@ -217,7 +239,7 @@ footer {
 
 .info-contato h3 {
     margin-bottom: 15px;
-    color: #ff6f61;
+    color: #96C94B;
 }
 
 .info-contato p {
@@ -228,7 +250,7 @@ footer {
 
 .info-contato i {
     margin-right: 10px;
-    color: #ff6f61;
+    color: #96C94B;
 }
 
 /* Responsividade */
@@ -250,4 +272,16 @@ footer {
         display: block;
         overflow-x: auto;
     }
+}
+
+.logo {
+    margin: 10px;
+    text-align: left;
+	position: relative; /* Isso vai permitir o movimento sem afetar o layout */
+	transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+}
+
+.logo:hover{
+	transform: translateY(-5px);
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }

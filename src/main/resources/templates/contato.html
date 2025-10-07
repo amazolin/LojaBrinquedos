@@ -11,6 +11,9 @@
 
 <body>
 	<header>
+		<div class="logo">
+			<a href="/loja"> <img th:src="@{/images/loja25.png}" alt="Minha Logo" width="150"/></a>
+		</div>
 		<h1>FAQ e Contato</h1>
 
 		<div class="login-btn">
@@ -38,10 +41,13 @@
 			href="/contato">Contato</a> <a href="/sobre">Sobre</a>
 			<a th:if="${isAdmin}" href="/administracao">Administração</a>
 	</nav>
-
+	<h1 id="segundo-titulo">Central de Ajuda e Contato</h1>
+	
+	
 	<div class="container">
-		<h1 id="segundo-titulo">Central de Ajuda e Contato</h1>
-
+		
+		
+		
 		<div class="content-wrapper">
 			<section class="area-faq">
 				<!--inicio FAQs-->

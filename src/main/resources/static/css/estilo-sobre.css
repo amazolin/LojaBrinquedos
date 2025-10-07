@@ -3,7 +3,7 @@
 /* Card colorido e infantil */
 .card-membro {
     background: #fff;
-    box-shadow: 0 4px 16px rgba(255,111,97,0.10), 0 1.5px 4px rgba(255,159,128,0.12);
+    box-shadow: 0 4px 16px rgba(42,178,201,0.10), 0 1.5px 4px rgba(124,233,255,0.12);
     border-radius: 16px;
     padding: 25px 10px 10px 10px;
     margin: 0 0 10px 0;
@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2.5px solid #ff9f80;
+    border: 2.5px solid #7CE9FF;
     position: relative;
     overflow: hidden;
 }
@@ -27,14 +27,14 @@
     margin-bottom: 6px;
     font-size: 1.15em;
     font-weight: bold;
-    color: #ff6f61;
+    color: #2AB2C9;
     text-shadow: 1px 1px 0 #fff6e0;
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 }
 
 .card-membro p {
     margin: 0;
-    color: #ff9f80;
+    color: #7CE9FF;
     font-size: 1em;
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 }
@@ -127,3 +127,124 @@
     border-radius: 8px;
 }
 
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 20px;
+	background-color: #2AB2C9;
+	color: #fff;
+}
+
+header {
+    position: relative;
+}
+
+h1 {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	text-align: center;
+	pointer-events: none;
+	font-size: 2em;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #7CE9FF;
+    padding: 10px 0;
+}
+
+/* Footer */
+footer {
+    background: #2AB2C9;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.login-btn {
+    position: absolute;
+    top: 20px; /* Um pouco mais para cima */
+    right: 20px;
+    background-color: #71D0F6;
+    border-radius: 8px; /* Bordas um pouco mais suaves */
+    padding: 8px 12px; /* Padding menor para um visual mais compacto */
+    z-index: 1000;
+    display: flex; /* Essencial para alinhar os itens de dentro */
+    align-items: center; /* Alinha verticalmente */
+    gap: 10px; /* Cria um espaço entre o ícone e os textos */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra suave */
+}
+
+/* Estilo para o ícone do usuário */
+.login-btn .icon-miniatura {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+/* Container para agrupar "Olá, Nome" e "Sair" */
+.login-btn .usuario-info {
+    display: flex;
+    flex-direction: column; /* Coloca um texto em cima do outro */
+    align-items: flex-start; /* Alinha os textos à esquerda */
+    line-height: 1.2; /* Espaçamento entre linhas mais justo */
+    color: white;
+}
+
+/* Estilo para o nome do usuário */
+.login-btn .usuario-info span {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Estilo para o link de "Sair" */
+.login-btn .usuario-info .btn-logout {
+    color: #ffdddd; /* Um vermelho mais claro para não chamar tanta atenção */
+    font-size: 0.8em;
+    text-decoration: none;
+}
+.login-btn .usuario-info .btn-logout:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para o botão "Entre ou Cadastre-se" quando deslogado */
+.login-btn a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+.login-btn button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+}
+
+body {
+  	background-color: #F0F0FF;
+    color: #2AB2C9;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+.logo {
+    margin: 10px;
+    text-align: left;
+	position: relative; /* Isso vai permitir o movimento sem afetar o layout */
+	transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+}
+
+.logo:hover{
+	transform: translateY(-5px);
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}

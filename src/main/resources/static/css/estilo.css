@@ -17,7 +17,7 @@
     position: absolute;
     top: 20px; /* Um pouco mais para cima */
     right: 20px;
-    background-color: #CF3050;
+    background-color: #D92128;
     border-radius: 8px; /* Bordas um pouco mais suaves */
     padding: 8px 12px; /* Padding menor para um visual mais compacto */
     z-index: 1000;
@@ -80,18 +80,18 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #fff0f0;
 }
 
 header {
-    background-color: #ff6f61;
+    background-color: #D93C2B;
     color: white;
-    padding: 20px;
+    padding: 5px;
     text-align: center;
 }
 
 nav {
-    background-color: #ff9f80;
+    background-color: #ff6f61;
     padding: 10px;
     text-align: center;
 }
@@ -135,7 +135,6 @@ nav a {
     transform: scale(1.05);
 }
 
-
 .produto h3 {
     font-size: 1.1em;
     margin: 10px 0 5px 0;
@@ -147,10 +146,14 @@ nav a {
 }
 
 footer {
-    background-color: #ff6f61;
+    background-color: #D93C2B;
     color: white;
     text-align: center;
     padding: 15px;
-    margin-top: 20px;
+    margin-top: 100px;
 }
 
+.logo {
+    margin: 10px;
+    text-align: center;
+}

@@ -10,7 +10,10 @@
 
 <body>
 	<header>
-		<h1 th:text="${mensagem}">Bem-vindo à PocoToys!</h1>
+		    <div class="logo">
+		        <img th:src="@{/images/loja25.png}" alt="Minha Logo" width="300"/>
+		    </div>
+		<h3>Bem-vindo à nossa loja!</h3>
 		<div class="login-btn">
 			<a th:if="${nomeUsuario == null}" href="/cadastro">
 				<img src="/images/usuario.png" alt="Ícone de usuário" class="icon-miniatura">

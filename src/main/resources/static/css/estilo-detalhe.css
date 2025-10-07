@@ -34,7 +34,7 @@
 
 .detalhe-info h2 {
     font-size: 2.2em;
-    color: #ff6f61;
+    color: #DB9C4B;
     margin-bottom: 15px;
 }
 
@@ -56,4 +56,62 @@
     color: #666;
     border-top: 1px solid #eee;
     padding-top: 15px;
+}
+
+body {
+  	background-color: #FFF3E1;
+    color: #DB8601;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 20px;
+	background-color: #DB8601;
+	color: #fff;
+}
+
+header {
+    position: relative;
+}
+
+h1 {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	text-align: center;
+	pointer-events: none;
+	font-size: 2em;
+}
+
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #DB8601;
+    color: #fff;
+    margin-top: 40px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #DB9C4B;
+    padding: 10px 0;
+}
+
+.logo {
+    margin: 10px;
+    text-align: left;
+	position: relative; /* Isso vai permitir o movimento sem afetar o layout */
+	transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+}
+
+.logo:hover{
+	transform: translateY(-5px);
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }

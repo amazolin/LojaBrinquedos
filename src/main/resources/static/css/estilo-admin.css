@@ -123,3 +123,55 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 20px;
+	background-color: #AA7FC2;
+	color: #fff;
+}
+
+header {
+    position: relative;
+}
+
+h1 {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	text-align: center;
+	pointer-events: none;
+	font-size: 2em;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #FBD8FF;
+    padding: 10px 0;
+}
+
+body {
+  	background-color: #FBEAFF;
+    color: black;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+.logo {
+    margin: 10px;
+	width: auto;
+	height: auto;
+    text-align: left;
+	position: relative; /* Isso vai permitir o movimento sem afetar o layout */
+	transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+}
+
+.logo:hover{
+	transform: translateY(-5px);
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
