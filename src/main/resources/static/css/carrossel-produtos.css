@@ -1,7 +1,7 @@
-.carrossel {
+.carrossel-produtos {
 	position: relative;
-	width: 200px;
-	height: 220px; /* Altura fixa */
+	width: 400px;
+	height: 440px; /* Altura fixa */
 	margin: 0 auto;
 	overflow: hidden;
 }
@@ -33,7 +33,7 @@
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	background-color: #ff6f61;
+	background-color: #DB9C4B;
 	color: white;
 	border: none;
 	padding: 8px 12px;
@@ -47,7 +47,7 @@
 
 .btn-prev:hover,
 .btn-next:hover {
-	background-color: #ff6f61;
+	background-color: #DB9C4B;
 }
 
 .btn-prev {
@@ -77,7 +77,7 @@
 
 .miniaturas img.miniatura-ativa {
 	opacity: 1;
-	border-color: #ff6f61;
+	border-color: #DB9C4B;
 }
 
 .imagens-principais img.imagem-ativa:hover {

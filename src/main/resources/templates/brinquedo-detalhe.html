@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title th:text="${brinquedo.nome}"></title>
     <link rel="stylesheet" href="/css/estilo.css">
-    <link rel="stylesheet" href="/css/estilo-detalhe.css"> </head>
+    <link rel="stylesheet" href="/css/estilo-detalhe.css">
+	<link rel="stylesheet" href="/css/carrossel-produtos.css"> </head>
 <body>
 
     <header>
@@ -24,10 +25,18 @@
     <div class="container">
         <div th:if="${brinquedo}" class="detalhe-container">
             
-            <div class="detalhe-imagem" style="display: flex; flex-direction: column; align-items: center;">
-                <img th:src="${brinquedo.imagemBrinquedo != null ? brinquedo.imagemBrinquedo : '/images/placeholder.png'}" 
-                     th:alt="${brinquedo.nome}" style="max-width: 350px; border-radius: 10px; margin-bottom: 16px;">
-
+			<div class="detalhe-imagem" style="display: flex; flex-direction: column; align-items: center;">
+			    <div class="carrossel-produtos">
+			        <div class="imagens-principais">
+			            <img th:if="${brinquedo.imagemBrinquedo != null}" th:src="@{${brinquedo.imagemBrinquedo}}" th:alt="${brinquedo.nome}" class="imagem-ativa">
+			            <img th:if="${brinquedo.imagem1 != null}" th:src="@{${brinquedo.imagem1}}" th:alt="${brinquedo.nome}">
+			            <img th:if="${brinquedo.imagem2 != null}" th:src="@{${brinquedo.imagem2}}" th:alt="${brinquedo.nome}">
+			            <img th:if="${brinquedo.imagem3 != null}" th:src="@{${brinquedo.imagem3}}" th:alt="${brinquedo.nome}">
+			        </div>
+			        <button class="btn-prev">←</button>
+			        <button class="btn-next">→</button>
+			    </div>
+				
                 <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
                     <form th:if="${podeInteragir}" th:action="@{/brinquedo/interesse}" method="post" style="margin-top: 0;">
                         <input type="hidden" name="id" th:value="${brinquedo.id}" />
@@ -68,6 +77,6 @@
         <p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
     </footer>
 
-    <script src="/js/carrossel.js"></script>
+    <script src="/js/carrossel-produtos.js"></script>
 </body>
 </html>

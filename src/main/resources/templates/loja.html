@@ -40,19 +40,27 @@
 
 	<div class="container">
 		<h2 class="titulo-mais-vendidos">Produtos em destaque</h2>
+		
+		<div class="produto" th:each="produto : ${produtos}" >
+			<div class="carrossel">
+			    <div class="imagens-principais" >
+			        <img th:if="${produto.imagemBrinquedo != null}" th:src="@{${produto.imagemBrinquedo}}" th:alt="${produto.nome}" class="imagem-produto">
+			        <img th:if="${produto.Imagem1 != null}" th:src="@{${produto.Imagem1}}" th:alt="${produto.nome}" class="imagem-produto">
+			        <img th:if="${produto.Imagem2 != null}" th:src="@{${produto.Imagem2}}" th:alt="${produto.nome}" class="imagem-produto">
+			        <img th:if="${produto.Imagem3 != null}" th:src="@{${produto.Imagem3}}" th:alt="${produto.nome}" class="imagem-produto">
+			    </div>
+			    <button class="btn-prev">←</button>
+			    <button class="btn-next">→</button>
+			</div>
 
-		<div class="produto" th:each="produto : ${produtos}">
-			<a th:href="@{'/brinquedo?id=' + ${produto.id}}">
-				<img th:src="@{${produto.imagemBrinquedo}}" th:alt="${produto.nome}" class="imagem-produto">
-				<h3 th:text="${produto.nome}">Nome do Produto</h3>
-				<p class="preco" th:text="${'R$ ' + #numbers.formatDecimal(produto.preco, 1, 'POINT', 2, 'COMMA')}">R$
-					0,00</p>
-				<span style="display:block; color:#888; font-size:0.95em; margin-top:4px;"
-					  th:text="'Interessados: ' + ${produto.interesse}"></span>
-			</a>
+		    <a th:href="@{'/brinquedo?id=' + ${produto.id}}">
+		        <h3 th:text="${produto.nome}">Nome do Produto</h3>
+		        <p class="preco" th:text="${'R$ ' + #numbers.formatDecimal(produto.preco, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</p>
+		        <span style="display:block; color:#888; font-size:0.95em; margin-top:4px;"
+		              th:text="'Interessados: ' + ${produto.interesse}"></span>
+		    </a>
 		</div>
 	</div>
-
 	<footer>
 		<p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
 	</footer>

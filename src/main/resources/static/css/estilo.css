@@ -131,8 +131,16 @@ nav a {
     margin: 0 auto 10px auto;
 }
 
-.imagem-produto:hover {
+.produto:hover {
     transform: scale(1.05);
+}
+
+.produto h3:hover {
+    transform: scale(1.10);
+}
+
+.produto p:hover {
+    transform: scale(1.10);
 }
 
 .produto h3 {
@@ -157,3 +165,4 @@ footer {
     margin: 10px;
     text-align: center;
 }
+

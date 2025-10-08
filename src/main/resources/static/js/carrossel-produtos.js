@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const carrosseis = document.querySelectorAll('.carrossel');
+  const carrosseis = document.querySelectorAll('.carrossel-produtos');
 
   if (carrosseis.length === 0) {
     console.warn('Nenhum carrossel encontrado na página.');
