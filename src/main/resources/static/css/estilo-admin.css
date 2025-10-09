@@ -154,6 +154,10 @@ nav {
     padding: 10px 0;
 }
 
+nav a:hover{
+	background-color: #AA7FC2 !important;
+}
+
 body {
   	background-color: #FBEAFF;
     color: black;

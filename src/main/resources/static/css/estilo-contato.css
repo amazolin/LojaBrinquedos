@@ -79,15 +79,19 @@ body {
     margin-left: 25px;
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
+nav a {
+    transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza a transição */
+    padding: 10px 15px; /* Adiciona padding para o fundo aparecer melhor */
+    display: inline-block; /* Necessário para aplicar padding e fundo */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    /* A cor padrão do texto (nav a) deve vir de estilo.css ou ser branca para contraste */
+    color: white; 
 }
 
-.nav-links a:hover {
-    color: #4ecdc4;
+nav a:hover {
+    background-color: #708020 !important;
+    color: #FFFFFF !important;
+    border-radius: 4px;
 }
 
 /* Títulos */
