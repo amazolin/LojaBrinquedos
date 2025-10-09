@@ -155,6 +155,17 @@ nav a:hover {
     margin-bottom: 0; 
 }
 
+/* 👉 adicione aqui 👇 */
+.filtro-categorias select {
+    font-size: 16px;
+    padding: 6px 10px;
+}
+
+.filtro-categorias label {
+    font-size: 16px;
+}
+
+
 /* Garante que o container principal esteja centralizado na página */
 /* Novo e mais específico */
 #pagina-produtos .container {
