@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,31 @@
 <title>Contato da loja</title>
 <link rel="stylesheet" href="/css/estilo.css">
 <link rel="stylesheet" href="/css/estilo-contato.css">
+
+<style>
+/* NOVO: Efeito HOVER na navegação (menu) com tons de verde */
+nav a {
+    transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza a transição */
+    padding: 10px 15px; /* Adiciona padding para o fundo aparecer melhor */
+    display: inline-block; /* Necessário para aplicar padding e fundo */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    /* A cor padrão do texto (nav a) deve vir de estilo.css ou ser branca para contraste */
+    color: white; 
+}
+
+nav a:hover {
+    background-color: #708020 !important; /* VERDE/OLIVA ESCURO para destaque */
+    color: #FFFFFF !important; /* Texto branco para contraste */
+    border-radius: 4px; /* Cantos arredondados */
+}
+
+/* Garante que o menu NAV tenha o fundo definido (Mantido como estava) */
+nav {
+    /* A cor de fundo principal deve vir de estilo.css ou ser definida aqui se não tiver */
+    /* Exemplo, se fosse amarelo/dourado: background-color: #FEE780 !important; */
+}
+</style>
+
 </head>
 
 <body>
@@ -17,14 +42,12 @@
 		<h1>FAQ e Contato</h1>
 
 		<div class="login-btn">
-			<!-- Se o usuário NÃO estiver logado -->
 			<a th:if="${nomeUsuario == null}" href="/cadastro"> <img
 				src="/images/usuario.png" alt="Ícone de usuário"
 				class="icon-miniatura"> <span>Boas vindas :)</span>
 				<button>Entre ou Cadastre-se</button>
 			</a>
 
-			<!-- Se o usuário estiver logado -->
 			<th:block th:if="${nomeUsuario != null}">
             <img src="/images/usuario.png" alt="Ícone de usuário" class="icon-miniatura">
             <div class="usuario-info">
@@ -38,7 +61,7 @@
 
 	<nav>
 		<a href="/loja">Início</a> <a href="/produtos">Produtos</a> <a
-			href="/contato">Contato</a> <a href="/sobre">Sobre</a>
+			href="/contato">Contato</a><a href="/historia">Sobre a Loja</a>  <a href="/sobre">Conheça Nossa Equipe</a>
 			<a th:if="${isAdmin}" href="/administracao">Administração</a>
 	</nav>
 	<h1 id="segundo-titulo">Central de Ajuda e Contato</h1>
@@ -50,7 +73,6 @@
 		
 		<div class="content-wrapper">
 			<section class="area-faq">
-				<!--inicio FAQs-->
 				<h2>
 					</i> Perguntas Frequentes (FAQs)
 				</h2>
@@ -98,10 +120,7 @@
 					</tbody>
 				</table>
 			</section>
-			<!--fim da seção de FAQs-->
-
 			<section class="area-contato">
-				<!--Inicio formulário-->
 				<h2>Formulário de Contato</h2>
 
 				<form id="formulario-contato">
@@ -146,8 +165,7 @@
 					<p>Horário de atendimento: Segunda a Sexta, 9h às 18h</p>
 				</div>
 			</section>
-			<!--fim formularios-->
-		</div>
+			</div>
 	</div>
 
 	<footer>
@@ -165,3 +183,16 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+Ferramentas
+

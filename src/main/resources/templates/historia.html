@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Sobre a Loja </title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/estilo-produtos.css">
+    
+    <style>
+       
+        body {
+            background-color: #FCEEF3; 
+        }
+
+        
+        header, footer {
+            background-color: #ff007f !important; 
+            color: white; 
+        }
+
+        
+        header h1, footer p {
+            color: white;
+        }
+
+    
+        nav {
+            background-color: #ff5cad !important; 
+        }
+        
+       
+        nav a {
+            transition: background-color 0.3s ease, color 0.3s ease; 
+            padding: 10px 15px; 
+            display: inline-block; 
+            text-decoration: none; 
+            color: white; 
+        }
+
+        nav a:hover {
+            background-color: #AF088F !important; 
+            color: #FCEEF3 !important; 
+            border-radius: 4px; 
+        }
+
+       
+              .login-btn {
+            background-color: #AF088F !important; 
+            border-radius: 5px !important;
+            box-shadow: none !important;
+            padding: 5px; 
+        }
+        
+        
+        .login-btn a {
+            background-color: transparent !important; 
+            color: white !important; 
+            border: none !important; 
+            outline: none !important;
+            text-decoration: none !important;
+            display: flex; 
+            align-items: center;
+        }
+        
+        
+        .login-btn button {
+            background-color: transparent !important; 
+            border: none !important; 
+            color: white !important; 
+            padding: 0; 
+            margin: 0;
+            box-shadow: none !important;
+            cursor: pointer;
+        }
+        
+        
+        .login-btn span {
+            color: white !important;
+            margin-right: 5px; 
+        }
+        
+        
+        .texto-central {
+            padding: 20px;
+            color: #ff007f; 
+            line-height: 1.6;
+            max-width: 1000px; 
+            margin: 20px auto; 
+            display: flex; 
+            justify-content: space-between;
+            gap: 40px; 
+            text-align: left; 
+        }
+
+       
+        
+       
+        .historia-coluna, .missao-coluna {
+            flex: 1; 
+            min-width: 300px; 
+        }
+
+     
+        .missao-coluna table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+
+        .missao-coluna th, .missao-coluna td {
+            padding: 10px;
+            border-bottom: 1px solid #ff5cad; 
+            text-align: left;
+        }
+        
+        .missao-coluna th {
+            background-color: #FCEEF3; 
+            font-weight: bold;
+            color: #ff007f;
+        }
+        
+       
+        .missao-coluna td {
+            color: #ff007f; 
+        }
+
+        .missao-coluna tr:last-child td {
+            border-bottom: none;
+        }
+        
+     
+        .missao-coluna td strong {
+            color: #ff007f; 
+        }
+        
+        
+        .missao-coluna ul {
+            padding-left: 15px;
+            margin: 0;
+        }
+        
+        
+        @media (max-width: 768px) {
+            .texto-central {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .historia-coluna, .missao-coluna {
+                min-width: unset;
+                width: 100%;
+            }
+            .missao-coluna th, .missao-coluna td {
+                text-align: center;
+            }
+        }
+        /* Fim do CSS */
+    </style>
+    </head>
+<body id="historia-loja">
+    <header>
+					<div class="logo">
+				       <a href="/loja"> <img th:src="@{/images/loja25.png}" alt="Minha Logo" width="150"/></a>
+				    </div>
+        <h1>Sobre a Loja</h1> 
+                		<div class="login-btn">
+					<a th:if="${nomeUsuario == null}" href="/cadastro"> <img
+						src="/images/usuario.png" alt="Ícone de usuário"
+						class="icon-miniatura"> <span>Boas vindas :)</span>
+						<button>Entre ou Cadastre-se</button>
+					</a>
+
+					<th:block th:if="${nomeUsuario != null}">
+		            <img src="/images/usuario.png" alt="Ícone de usuário" class="icon-miniatura">
+		            <div class="usuario-info">
+		                <span th:text="'Olá, ' + ${nomeUsuario}"></span>
+		                <a href="/logout" class="btn-logout">Sair</a>
+		            </div>
+        </th:block>
+        </div>
+    </header>
+
+    <nav>
+        <a href="/loja">Início</a>
+        <a href="/produtos">Produtos</a>
+        <a href="/contato">Contato</a>
+        <a href="/historia">Sobre a Loja</a> 
+        <a href="/sobre">Conheça Nossa Equipe</a>
+		<a th:if="${isAdmin}" href="/administracao">Administração</a>
+    </nav>
+
+    <div class="container">
+        
+        <div class="texto-central">
+            
+            <div class="historia-coluna">
+                <h2><strong>Pocotoys: Levando sua infância adiante</strong></h2>
+                <p>
+                    A <strong>Pocotoys</strong> nasceu em <strong>2025</strong> de um projeto de <strong>ADS (Análise e Desenvolvimento de Sistemas)</strong> na FATEC Guarulhos. Os seis fundadores – Priscila, Danilo, Raphael, Murilo, Paulo e Mateus – transformaram o sonho de criar um negócio inovador em realidade.
+                </p>
+                <p>
+                    Eles uniram a lógica da <strong>programação</strong> com a magia da <strong>infância</strong>, criando uma loja que é mais que brinquedos: é uma experiência. A Pocotoys é a prova de que a <strong>tecnologia </strong> pode ajudar a construir o futuro da brincadeira.
+                </p>
+            </div>
+
+            <div class="missao-coluna">
+                <h2><strong>Visão, Missão e Valores</strong></h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Missão</strong></td>
+                            <td>Incentivar a imaginação e a conexão familiar por meio de brinquedos que unem o clássico ao tecnológico.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Visão</strong></td>
+                            <td>Ser referência em inovação e afeto no mercado de brinquedos, transformando a brincadeira em aprendizado contínuo.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Valores</strong></td>
+                            <td>
+                                <ul>
+                                    <li><strong>Amizade e Colaboração:</strong> A base de tudo.</li>
+                                    <li><strong>Inovação Lúdica:</strong> Usar a tecnologia para ampliar a diversão.</li>
+                                    <li><strong>Alegria Contagiante:</strong> Promover um ambiente de entusiasmo e leveza.</li>
+                                    <li><strong>Integridade:</strong> Transparência e respeito em todas as interações.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div> 
+        </div> <script src="/js/carrossel.js"></script>
+
+    <footer>
+        <p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>

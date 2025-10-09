@@ -3,9 +3,29 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Sobre a Equipe</title>
+<title> Conheça Nossa Equipe </title>
 <link rel="stylesheet" href="/css/estilo.css">
 <link rel="stylesheet" href="/css/estilo-sobre.css">
+
+<style>
+
+nav a {
+    transition: background-color 0.3s ease, color 0.3s ease; 
+    padding: 10px 15px; 
+    display: inline-block; 
+    text-decoration: none; 
+    color: white; 
+}
+
+
+nav a:hover {
+    background-color: #0040ff !important; 
+    color: #f0f0f0 !important; 
+    border-radius: 4px; 
+}
+
+</style>
+
 </head>
 
 <body>
@@ -14,17 +34,15 @@
 		<div class="logo">
 			<a href="/loja"> <img th:src="@{/images/loja25.png}" alt="Minha Logo" width="150"/></a>
 		</div>
-		<h1>Conheça a Equipe!</h1>
+		<h1>Conheça Nossa Equipe!</h1>
 
 		<div class="login-btn">
-			<!-- Se o usuário NÃO estiver logado -->
 			<a th:if="${nomeUsuario == null}" href="/cadastro"> <img
 				src="/images/usuario.png" alt="Ícone de usuário"
 				class="icon-miniatura"> <span>Boas vindas :)</span>
 				<button>Entre ou Cadastre-se</button>
 			</a>
 
-			<!-- Se o usuário estiver logado -->
 			<th:block th:if="${nomeUsuario != null}">
             <img src="/images/usuario.png" alt="Ícone de usuário" class="icon-miniatura">
             <div class="usuario-info">
@@ -36,9 +54,11 @@
 	</header>
 
 	<nav>
-		<a href="/loja">Início</a> <a href="/produtos">Produtos</a> <a
-			href="/contato">Contato</a> <a href="/sobre">Sobre</a>
-			<a th:if="${isAdmin}" href="/administracao">Administração</a>
+		<a href="/loja">Início</a> 
+		<a href="/produtos">Produtos</a> 
+		<a href="/contato">Contato</a> 
+		<a href="/historia">Sobre a Loja</a> <a href="/sobre">Conheça Nossa Equipe</a>
+		<a th:if="${isAdmin}" href="/administracao">Administração</a>
 	</nav>
 
 	<div class="container">
@@ -59,7 +79,7 @@
 				<img th:src="@{/images/priscila.jpg}" alt="Priscila Diniz"
 					class="imagem-produto">
 				<h3>Priscila Diniz</h3>
-				<p>Desenvolvedora de Banco de Dados</p>
+				<p>Desenvolvedora & Desenvolvedora de Banco de Dados</p>
 			</div>
 		</div>
 		<div class="membros" style="justify-content: center;">

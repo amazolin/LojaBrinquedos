@@ -82,6 +82,11 @@ public class ControladorLoja {
         adicionarUsuarioLogado(model, session);
         return "sobre";
     }
+    
+    @GetMapping("/historia") 
+    public String exibirHistoria() {
+        return "historia"; // Retorna o nome do arquivo historia.html
+    }
 
     // ATUALIZADO: /produtos agora filtra e carrega todas as categorias
     @GetMapping("/produtos")

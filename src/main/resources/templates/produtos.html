@@ -5,6 +5,25 @@
     <title>Produtos - Loja de Brinquedos</title>
     <link rel="stylesheet" href="/css/estilo.css">
     <link rel="stylesheet" href="/css/estilo-produtos.css">
+
+    <style>
+
+    nav a {
+        transition: background-color 0.3s ease, color 0.3s ease; 
+        padding: 10px 15px; 
+        display: inline-block; 
+        text-decoration: none; 
+        color: white; 
+    }
+
+    
+    nav a:hover {
+        background-color: #ff8000 !important; 
+        color: white !important; 
+        border-radius: 4px; 
+    }
+
+    </style>
 </head>
 <body id="pagina-produtos">
     <header>
@@ -13,14 +32,12 @@
 				    </div>
         <h1>Produtos</h1>
                 		<div class="login-btn">
-					<!-- Se o usuário NÃO estiver logado -->
 					<a th:if="${nomeUsuario == null}" href="/cadastro"> <img
 						src="/images/usuario.png" alt="Ícone de usuário"
 						class="icon-miniatura"> <span>Boas vindas :)</span>
 						<button>Entre ou Cadastre-se</button>
 					</a>
 
-					<!-- Se o usuário estiver logado -->
 					<th:block th:if="${nomeUsuario != null}">
 		            <img src="/images/usuario.png" alt="Ícone de usuário" class="icon-miniatura">
 		            <div class="usuario-info">
@@ -35,7 +52,8 @@
         <a href="/loja">Início</a>
         <a href="/produtos">Produtos</a>
         <a href="/contato">Contato</a>
-        <a href="/sobre">Sobre</a>
+        <a href="/historia">Sobre a Loja</a> 
+        <a href="/sobre">Conheça Nossa Equipe</a>
 		<a th:if="${isAdmin}" href="/administracao">Administração</a>
     </nav>
 
