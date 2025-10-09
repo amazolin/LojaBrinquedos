@@ -84,7 +84,8 @@ public class ControladorLoja {
     }
     
     @GetMapping("/historia") 
-    public String exibirHistoria() {
+    public String exibirHistoria(Model model, HttpSession session) {
+        adicionarUsuarioLogado(model, session);
         return "historia"; // Retorna o nome do arquivo historia.html
     }
 

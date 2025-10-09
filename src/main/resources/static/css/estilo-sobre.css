@@ -157,6 +157,11 @@ nav {
     padding: 10px 0;
 }
 
+nav a:hover{
+	background-color: #2AB2C9 !important;
+}
+
+
 /* Footer */
 footer {
     background: #2AB2C9;

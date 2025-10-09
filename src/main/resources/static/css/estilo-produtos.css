@@ -20,6 +20,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
+	color: black;
 }
 
 header h1 {
@@ -60,6 +61,7 @@ header {
     color: #ff6b6b;
     font-weight: bold;
     margin-top: 5px;
+	color: black;
 }
 
 body {
@@ -139,15 +141,16 @@ nav a {
 }
 
 nav a:hover {
-    text-decoration: underline;
+    background-color: #C4A500 !important;
 }
+
 
 /* Container para o cabeçalho da lista de produtos */
 .produtos-header {
     display: flex;                 /* Alinha os itens na horizontal */
     justify-content: space-between; /* Coloca um item no início e outro no fim */
     align-items: center;           /* Centraliza os itens verticalmente */
-    margin-bottom: 30px;           /* Espaço antes da lista de produtos */
+    margin-bottom: 30px;        /* Espaço antes da lista de produtos */
 }
 
 /* Remove a margem de baixo do filtro, pois já está no .produtos-header */
@@ -199,4 +202,8 @@ nav a:hover {
 .logo:hover{
 	transform: translateY(-5px);
 	box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+a {
+	text-decoration: none !important;
 }

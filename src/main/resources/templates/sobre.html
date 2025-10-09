@@ -7,24 +7,7 @@
 <link rel="stylesheet" href="/css/estilo.css">
 <link rel="stylesheet" href="/css/estilo-sobre.css">
 
-<style>
 
-nav a {
-    transition: background-color 0.3s ease, color 0.3s ease; 
-    padding: 10px 15px; 
-    display: inline-block; 
-    text-decoration: none; 
-    color: white; 
-}
-
-
-nav a:hover {
-    background-color: #0040ff !important; 
-    color: #f0f0f0 !important; 
-    border-radius: 4px; 
-}
-
-</style>
 
 </head>
 
@@ -35,6 +18,7 @@ nav a:hover {
 			<a href="/loja"> <img th:src="@{/images/loja25.png}" alt="Minha Logo" width="150"/></a>
 		</div>
 		<h1>Conheça Nossa Equipe!</h1>
+
 
 		<div class="login-btn">
 			<a th:if="${nomeUsuario == null}" href="/cadastro"> <img

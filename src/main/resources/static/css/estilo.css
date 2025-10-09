@@ -97,11 +97,29 @@ nav {
 }
 
 nav a {
+    transition: background-color 0.3s ease, color 0.3s ease; 
+    padding: 10px 15px; 
+    display: inline-block; 
+    text-decoration: none; 
+    color: white; 
+	font-weight: bold;
+}
+
+/*nav a {
     color: white;
     margin: 0 15px;
     text-decoration: none;
     font-weight: bold;
+}*/
+
+
+nav a:hover {
+    background-color: #ff8000 !important; 
+    color: white !important; 
+    border-radius: 4px; 
+	transform: scale(1.05);
 }
+
 
 .container {
     padding: 20px;
@@ -146,6 +164,7 @@ nav a {
 .produto h3 {
     font-size: 1.1em;
     margin: 10px 0 5px 0;
+	color: black;
 }
 
 .produto p {
@@ -166,6 +185,8 @@ footer {
     text-align: center;
 }
 
-
+a {
+	text-decoration: none !important;
+}
 
 
