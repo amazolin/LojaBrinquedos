@@ -9,6 +9,10 @@ import com.example.model.Brinquedo;
 
 @Repository
 public interface BrinquedoRepository extends JpaRepository<Brinquedo, Long> {
-    // Método para encontrar todos os brinquedos de uma determinada categoria pelo ID
+
+    // Encontrar brinquedos por categoria
     List<Brinquedo> findByCategoriaId(Long categoriaId);
+
+    // 🔍 Novo método para busca por nome (parcial e sem diferenciar maiúsculas/minúsculas)
+    List<Brinquedo> findByNomeContainingIgnoreCase(String nome);
 }

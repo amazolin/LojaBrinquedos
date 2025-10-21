@@ -1,77 +1,89 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Produtos - Loja de Brinquedos</title>
-    <link rel="stylesheet" href="/css/estilo.css">
-    <link rel="stylesheet" href="/css/estilo-produtos.css">
+<meta charset="UTF-8">
+<title>Produtos - Loja de Brinquedos</title>
+<link rel="stylesheet" href="/css/estilo.css">
+<link rel="stylesheet" href="/css/estilo-produtos.css">
 
 </head>
 <body id="pagina-produtos">
-    <header>
-					<div class="logo">
-				       <a href="/loja"> <img th:src="@{/images/loja25.png}" alt="Minha Logo" width="150"/></a>
-				    </div>
-        <h1>Produtos</h1>
-                		<div class="login-btn">
-					<a th:if="${nomeUsuario == null}" href="/cadastro"> <img
-						src="/images/usuario.png" alt="Ícone de usuário"
-						class="icon-miniatura"> <span>Boas vindas :)</span>
-						<button>Entre ou Cadastre-se</button>
-					</a>
+	<header>
+		<div class="logo">
+			<a href="/loja"> <img th:src="@{/images/loja25.png}"
+				alt="Minha Logo" width="150" /></a>
+		</div>
+		<h1>Produtos</h1>
+		       
+		<div class="login-btn">
+			<a th:if="${nomeUsuario == null}" href="/cadastro"> <img
+				src="/images/usuario.png" alt="Ícone de usuário"
+				class="icon-miniatura"> <span>Boas vindas :)</span>
+				<button>Entre ou Cadastre-se</button>
+			</a>
 
-					<th:block th:if="${nomeUsuario != null}">
-		            <img src="/images/usuario.png" alt="Ícone de usuário" class="icon-miniatura">
-		            <div class="usuario-info">
-		                <span th:text="'Olá, ' + ${nomeUsuario}"></span>
-		                <a href="/logout" class="btn-logout">Sair</a>
-		            </div>
-        </th:block>
-        </div>
-    </header>
+			<th:block th:if="${nomeUsuario != null}">
+				<img src="/images/usuario.png" alt="Ícone de usuário"
+					class="icon-miniatura">
+				<div class="usuario-info">
+					<span th:text="'Olá, ' + ${nomeUsuario}"></span> <a href="/logout"
+						class="btn-logout">Sair</a>
+				</div>
+			</th:block>
+			       
+		</div>
+	</header>
 
-    <nav>
-        <a href="/loja">Início</a>
-        <a href="/produtos">Produtos</a>
-        <a href="/contato">Contato</a>
-        <a href="/historia">Sobre a Loja</a> 
-        <a href="/sobre">Conheça Nossa Equipe</a>
-		<a th:if="${isAdmin}" href="/administracao">Administração</a>
-    </nav>
+	<nav>
+		<a href="/loja">Início</a> <a href="/produtos">Produtos</a> <a
+			href="/contato">Contato</a> <a href="/historia">Sobre a Loja</a> <a
+			href="/sobre">Conheça Nossa Equipe</a> <a th:if="${isAdmin}"
+			href="/administracao">Administração</a>
+	</nav>
 
-    <div class="container">
-        <h2 class="titulo-pagina">Todos os produtos</h2>
+	<div class="container">
+		<h2 class="titulo-pagina">Todos os produtos</h2>
 
-        <div class="posiciona-filtro">
-             <form method="get" action="/produtos" class="filtro-categorias">
-                <label for="categoria">Filtrar por categoria:</label>
-                <select name="categoria" id="categoria" onchange="this.form.submit()">
-                    <option value="">Todas</option>
-                    <option th:each="cat : ${categorias}" 
-                            th:value="${cat.id}" 
-                            th:text="${cat.nome}"
-                            th:selected="${categoriaSelecionadaId != null && categoriaSelecionadaId == cat.id}">
-                    </option>
-                </select>
-            </form>
-        </div>
+		<div class="posiciona-filtro">
+			<form method="get" action="/produtos" class="filtro-categorias">
+				<label for="categoria">Filtrar por categoria:</label> <select
+					name="categoria" id="categoria" onchange="this.form.submit()">
+					<option value="">Todas</option>
+					<option th:each="cat : ${categorias}" th:value="${cat.id}"
+						th:text="${cat.nome}"
+						th:selected="${categoriaSelecionadaId != null && categoriaSelecionadaId == cat.id}">
+					</option>
+				</select>
+			</form>
 
-        <div class="produtos-lista">
-            <div class="produto" th:each="produto : ${produtos}">
-                <a th:href="@{'/brinquedo?id=' + ${produto.id}}">
-                    <img th:src="@{${produto.imagemBrinquedo}}" th:alt="${produto.nome}" class="imagem-produto">
-                    <h3 th:text="${produto.nome}">Nome do Produto</h3>
-                    <p class="preco" th:text="${'R$ ' + #numbers.formatDecimal(produto.preco, 1, 'POINT', 2, 'COMMA')}">R$ 0,00</p>
-                    <span style="display:block; color:#888; font-size:0.95em; margin-top:4px;"
-                          th:text="'Interessados: ' + ${produto.interesse}"></span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <script src="/js/carrossel.js"></script>
+			<!-- 🔍 Barra de pesquisa -->
+			<form method="get" action="/produtos" class="barra-pesquisa">
+				<input type="text" name="busca" placeholder="Pesquisar brinquedo..."
+					th:value="${paramBusca}" />
+				<button type="submit">Buscar</button>
+			</form>
+		</div>
+	</div>
 
-    <footer>
-        <p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
-    </footer>
+	<div class="produtos-lista">
+		<div class="produto" th:each="produto : ${produtos}">
+			<a th:href="@{'/brinquedo?id=' + ${produto.id}}"> <img
+				th:src="@{${produto.imagemBrinquedo}}" th:alt="${produto.nome}"
+				class="imagem-produto">
+				<h3 th:text="${produto.nome}">Nome do Produto</h3>
+				<p class="preco"
+					th:text="${'R$ ' + #numbers.formatDecimal(produto.preco, 1, 'POINT', 2, 'COMMA')}">R$
+					0,00</p> <span
+				style="display: block; color: #888; font-size: 0.95em; margin-top: 4px;"
+				th:text="'Interessados: ' + ${produto.interesse}"></span>
+			</a>
+		</div>
+	</div>
+	</div>
+	<script src="/js/carrossel.js"></script>
+
+	<footer>
+		<p>PocoToys &copy; 2025 - Todos os direitos reservados</p>
+	</footer>
 </body>
 </html>

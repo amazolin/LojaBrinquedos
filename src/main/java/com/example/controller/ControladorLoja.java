@@ -27,15 +27,14 @@ public class ControladorLoja {
 
     private final UsuarioService usuarioService;
     private final BrinquedoService brinquedoService;
-    private final CategoriaService categoriaService; // NOVO SERVIÇO INJETADO
+    private final CategoriaService categoriaService;
 
     public ControladorLoja(UsuarioService usuarioService, BrinquedoService brinquedoService, CategoriaService categoriaService) {
         this.usuarioService = usuarioService;
         this.brinquedoService = brinquedoService;
-        this.categoriaService = categoriaService; // INICIALIZAÇÃO NO CONSTRUTOR
+        this.categoriaService = categoriaService;
     }
 
-    // Método auxiliar para adicionar nomeUsuario e isAdmin
     private void adicionarUsuarioLogado(Model model, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
         if (usuario != null) {
@@ -45,18 +44,15 @@ public class ControladorLoja {
         }
     }
 
-    // Método auxiliar para verificar admin
     private boolean isAdmin(HttpSession session) {
         Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
         return isAdmin != null && isAdmin;
     }
 
-    // ATUALIZADO: /loja agora carrega produtos do banco de dados
     @GetMapping("/loja")
     public String mostrarMensagem(Model model, HttpSession session) {
         adicionarUsuarioLogado(model, session);
         model.addAttribute("mensagem", "Bem-vindo a Pocotoys!");
-        // Carrega até 3 brinquedos mais "interessados" para a página inicial como destaque
         List<Brinquedo> produtosEmDestaque = brinquedoService.listarTodos()
             .stream()
             .sorted((b1, b2) -> Integer.compare(b2.getInteresse(), b1.getInteresse()))
@@ -82,30 +78,39 @@ public class ControladorLoja {
         adicionarUsuarioLogado(model, session);
         return "sobre";
     }
-    
-    @GetMapping("/historia") 
+
+    @GetMapping("/historia")
     public String exibirHistoria(Model model, HttpSession session) {
         adicionarUsuarioLogado(model, session);
-        return "historia"; // Retorna o nome do arquivo historia.html
+        return "historia";
     }
 
-    // ATUALIZADO: /produtos agora filtra e carrega todas as categorias
+    // Método /produtos para categoria e busca
     @GetMapping("/produtos")
-    public String produtos(@RequestParam(name = "categoria", required = false) Long categoriaId, Model model, HttpSession session) {
+    public String produtos(
+            @RequestParam(value = "categoria", required = false) Long categoriaId,
+            @RequestParam(value = "busca", required = false) String busca,
+            Model model,
+            HttpSession session) {
+
         adicionarUsuarioLogado(model, session);
-        
+
         List<Categoria> categorias = categoriaService.listarTodas();
         model.addAttribute("categorias", categorias);
 
         List<Brinquedo> produtos;
-        if (categoriaId != null && categoriaId > 0) {
+
+        if (busca != null && !busca.isBlank()) {
+            produtos = brinquedoService.buscarPorNome(busca);
+            model.addAttribute("paramBusca", busca);
+        } else if (categoriaId != null && categoriaId > 0) {
             produtos = brinquedoService.listarPorCategoria(categoriaId);
             model.addAttribute("categoriaSelecionadaId", categoriaId);
         } else {
             produtos = brinquedoService.listarTodos();
         }
+
         model.addAttribute("produtos", produtos);
-        
         return "produtos";
     }
 
@@ -131,12 +136,10 @@ public class ControladorLoja {
         }).orElse("redirect:/produtos");
     }
 
-    // Endpoint para alternar interesse (on/off)
     @PostMapping("/brinquedo/interesse")
     public String alternarInteresse(@RequestParam("id") Long id, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
         if (usuario == null) {
-            // Não permite alterar interesse sem login
             return "redirect:/brinquedo?id=" + id;
         }
         @SuppressWarnings("unchecked")
@@ -160,7 +163,6 @@ public class ControladorLoja {
         return "redirect:/brinquedo?id=" + id;
     }
 
-    // ATUALIZADO: /administracao (GET) carrega categorias para o formulário
     @GetMapping("/administracao")
     public String administracao(Model model, HttpSession session) {
         if (!isAdmin(session)) {
@@ -169,28 +171,25 @@ public class ControladorLoja {
         adicionarUsuarioLogado(model, session);
         model.addAttribute("brinquedos", brinquedoService.listarTodos());
         model.addAttribute("brinquedo", new Brinquedo());
-        model.addAttribute("categorias", categoriaService.listarTodas()); // Carrega categorias
+        model.addAttribute("categorias", categoriaService.listarTodas());
         return "administracao";
     }
 
-    // ATUALIZADO: /administracao/adicionar (POST) precisa recarregar categorias em caso de erro
     @PostMapping("/administracao/adicionar")
     public String adicionarBrinquedo(@Valid @ModelAttribute Brinquedo brinquedo, BindingResult result, HttpSession session, Model model) {
         if (!isAdmin(session)) {
             return "redirect:/acesso-negado";
         }
-        
         if (result.hasErrors()) {
             adicionarUsuarioLogado(model, session);
             model.addAttribute("brinquedos", brinquedoService.listarTodos());
-            model.addAttribute("categorias", categoriaService.listarTodas()); // Recarrega categorias
+            model.addAttribute("categorias", categoriaService.listarTodas());
             return "administracao";
         }
         brinquedoService.salvar(brinquedo);
         return "redirect:/administracao";
     }
 
-    // ATUALIZADO: /administracao/editar (GET) carrega categorias para o formulário
     @GetMapping("/administracao/editar/{id}")
     public String editarBrinquedoForm(@PathVariable("id") Long id, Model model, HttpSession session) {
         if (!isAdmin(session)) {
@@ -200,20 +199,18 @@ public class ControladorLoja {
         Brinquedo brinquedo = brinquedoService.buscarPorId(id)
                 .orElseThrow(() -> new IllegalArgumentException("Brinquedo inválido: " + id));
         model.addAttribute("brinquedo", brinquedo);
-        model.addAttribute("categorias", categoriaService.listarTodas()); // Carrega categorias
+        model.addAttribute("categorias", categoriaService.listarTodas());
         return "editar-brinquedo";
     }
 
-    // ATUALIZADO: /administracao/editar (POST) precisa recarregar categorias em caso de erro
     @PostMapping("/administracao/editar")
     public String atualizarBrinquedo(@Valid @ModelAttribute Brinquedo brinquedo, BindingResult result, HttpSession session, Model model) {
         if (!isAdmin(session)) {
             return "redirect:/acesso-negado";
         }
-        
         if (result.hasErrors()) {
             adicionarUsuarioLogado(model, session);
-            model.addAttribute("categorias", categoriaService.listarTodas()); // Recarrega categorias
+            model.addAttribute("categorias", categoriaService.listarTodas());
             return "editar-brinquedo";
         }
         brinquedoService.salvar(brinquedo);
@@ -244,12 +241,9 @@ public class ControladorLoja {
         try {
             usuarioService.cadastrar(usuario);
             session.setAttribute("usuarioLogado", usuario);
-            if (usuario.getEmail().toLowerCase().endsWith("@pocotoys.com.br") ||
-                usuario.getEmail().toLowerCase().endsWith("@apocotoys.com.br")) {
-                session.setAttribute("isAdmin", true);
-            } else {
-                session.setAttribute("isAdmin", false);
-            }
+            boolean admin = usuario.getEmail().toLowerCase().endsWith("@pocotoys.com.br") ||
+                            usuario.getEmail().toLowerCase().endsWith("@apocotoys.com.br");
+            session.setAttribute("isAdmin", admin);
             return "redirect:/loja";
         } catch (IllegalArgumentException e) {
             model.addAttribute("erro", e.getMessage());
@@ -266,11 +260,9 @@ public class ControladorLoja {
     public String login(@RequestParam String email, @RequestParam String senha, HttpSession session) {
         return usuarioService.autenticar(email, senha).map(usuario -> {
             session.setAttribute("usuarioLogado", usuario);
-            if (email.toLowerCase().endsWith("@pocotoys.com.br") || email.toLowerCase().endsWith("@apocotoys.com.br")) {
-                session.setAttribute("isAdmin", true);
-            } else {
-                session.setAttribute("isAdmin", false);
-            }
+            boolean admin = email.toLowerCase().endsWith("@pocotoys.com.br") ||
+                            email.toLowerCase().endsWith("@apocotoys.com.br");
+            session.setAttribute("isAdmin", admin);
             return "redirect:/loja";
         }).orElseGet(() -> {
             session.setAttribute("erroLogin", "Credenciais inválidas");

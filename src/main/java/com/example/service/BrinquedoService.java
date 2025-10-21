@@ -26,6 +26,11 @@ public class BrinquedoService {
         return brinquedoRepository.findByCategoriaId(categoriaId);
     }
 
+    // ✅ Novo método para busca por nome (com filtro parcial e ignorando maiúsculas/minúsculas)
+    public List<Brinquedo> buscarPorNome(String nome) {
+        return brinquedoRepository.findByNomeContainingIgnoreCase(nome);
+    }
+
     public Optional<Brinquedo> buscarPorId(Long id) {
         return brinquedoRepository.findById(id);
     }
@@ -38,7 +43,7 @@ public class BrinquedoService {
         brinquedoRepository.deleteById(id);
     }
 
-        // Lista todos os brinquedos ordenados por interesse (maior primeiro)
+    // Lista todos os brinquedos ordenados por interesse (maior primeiro)
     public List<Brinquedo> listarTodosPorInteresse() {
         return listarTodos().stream()
             .sorted((b1, b2) -> Integer.compare(b2.getInteresse(), b1.getInteresse()))
